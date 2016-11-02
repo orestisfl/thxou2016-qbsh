@@ -1,35 +1,94 @@
-% Compile command:
-% xelatex -ini -shell-escape "&xelatex preamble.tex\dump"
-% or:
-% xelatex -ini -shell-escape -job-name="preamble" "&xelatex preamble.tex\dump"
-\RequirePackage[l2tabu, orthodox]{nag}
-% Specify the type of document.
-\documentclass[a4paper, titlepage]{report}
+\documentclass[12pt,a4paper,titlepage,oneside]{scrartcl}
 
+%\usepackage[includeheadfoot]{geometry}
+%\usepackage[left=1in,right=1in,top=1in,bottom=1.5in]{geometry}
+
+% ---------------------
+% 		 FONTS
+% ---------------------
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\usepackage[onlymath,mathlf]{MinionPro}
+\usepackage[no-math]{fontspec}
+\setmainfont{Minion Pro}
+\setsansfont{Myriad Pro}[
+	UprightFont = MyriadPro-Regular,
+	ItalicFont = MyriadPro-It,
+	BoldFont = MyriadPro-SemiBold,
+	BoldItalicFont = MyriadPro-SemiBoldIt,
+]
+
+\linespread{1.05}
+
+\usepackage{microtype}
+
+% ---------------------
+%   LANGUAGE OPTIONS
+% ---------------------
+\usepackage{polyglossia}
+\setmainlanguage{greek}
+\setotherlanguages{english}
+
+\PolyglossiaSetup{greek}{indentfirst=false}
+\PolyglossiaSetup{english}{indentfirst=false}
+
+% ---------------------
+% KOMA-SPECIFIC OPTIONS
+% ---------------------
+%\addtokomafont{disposition}{\rmfamily}
+\addtokomafont{author}{\large}
+\addtokomafont{subject}{\sffamily}
+\addtokomafont{subtitle}{\Large\rmfamily}
+\addtokomafont{date}{\large}
+%\addtokomafont{captionlabel}{\bfseries}
+
+% Headers, Footers
+\usepackage[automark,headsepline,footsepline]{scrlayer-scrpage}
+
+\clearpairofpagestyles
+\lohead{Query by Singing/Humming}
+\rehead{Query by Singing/Humming}
+
+\lehead{\headmark}
+\rohead{\headmark}
+
+\lofoot{Σελίδα \thepage\ από \pageref{LastPage}}
+\refoot{Σελίδα \thepage\ από \pageref{LastPage}}
+\pagestyle{scrheadings}
+
+\setkomafont{pagehead}{\normalfont}
+\setkomafont{pagefoot}{\normalfont}
+
+% Heading spacings
+\RedeclareSectionCommand[
+  beforeskip=-.5\baselineskip,
+  afterskip=.25\baselineskip]{section}
+\RedeclareSectionCommand[
+  beforeskip=-.5\baselineskip,
+  afterskip=.25\baselineskip]{subsection}
+\RedeclareSectionCommand[
+  beforeskip=-.25\baselineskip,
+  afterskip=.25\baselineskip]{subsubsection}
+%\RedeclareSectionCommand[
+%  beforeskip=.5\baselineskip,
+%  afterskip=-1em]{paragraph}
+%\RedeclareSectionCommand[
+%  beforeskip=-.5\baselineskip,
+%  afterskip=-1em]{subparagraph}
+
+% ----------------------
+% MISCELLANEOUS PACKAGES
+% ----------------------
 \setcounter{tocdepth}{3} % subsub has numbers
-\setcounter{secnumdepth}{3} % subsub in toc
+\setcounter{secnumdepth}{0} % subsub in toc
 
-% Disable par indents:
-% http://tex.stackexchange.com/a/55016/78791
-% http://ctan.org/pkg/parskip
-\usepackage{parskip}
-
-% Packages:
 % Argument 'table' for '\cellcolor{}' command.
 % Should be high because it might get loaded by another package with different arguments:
 % - http://tex.stackexchange.com/questions/87197/latex-error-option-clash-for-package-xcolor-for-table
 % - http://tex.stackexchange.com/questions/83101/option-clash-for-package-xcolor
 \usepackage[usenames, table]{xcolor}
-
-% The titlepic package allows you to place a picture on the title page (cover page) of a LaTeX document.
-\usepackage{titlepic}
-
-\usepackage{tikz}
-\usepackage[a4paper, margin=1.0in, bottom=1.5in]{geometry}
-
-% Select alternative section titles.
-% https://www.ctan.org/pkg/titlesec
-\usepackage{titlesec}
 
 % For \includegraphics.
 % https://ctan.org/pkg/graphicx
@@ -38,58 +97,11 @@
 % Provides LaTeX the ability to create hyperlinks within the document.
 % https://www.ctan.org/pkg/hyperref
 % http://en.wikibooks.org/wiki/LaTeX/Hyperlinks#Hyperref
-\usepackage[bookmarks=true,colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage[hidelinks]{hyperref}
 
 % Go to the top of an image when a figure reference is clicked:
 % http://stackoverflow.com/a/21251925/3430986%
 \usepackage{caption}
-
-% Math related:
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{bm}
-\usepackage{breqn}
-
-% http://tex.stackexchange.com/a/56953/78791
-\newcommand{\argmin}{\operatornamewithlimits{argmin}}
-% http://tex.stackexchange.com/a/107190/78791
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
-\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
-% Number specific equation in align*
-\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
-
-% bad fonts for implies?
-\renewcommand{\implies}{=\!\Rightarrow}
-\usepackage{extarrows}
-
-% Chapter & page styling with fancyhdr.
-\ifdefined\chapter
-\titleformat{\chapter}[hang]{\bfseries\huge}{\thechapter}{2pc}{}
-\fi
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\ifdefined\chaptermark
-\renewcommand{\chaptermark}[1]{%
-  \markboth{#1}{}}
-\fi
-\renewcommand{\sectionmark}[1]{%
-  \markright{\thesection\ #1}}
-\fancyhf{} % delete current header and footer
-% Warning: using fancyhead and minted section names will result in tex capacity errors.
-\ifdefined\chaptermark
-\fancyhead[L]{\bfseries\leftmark}
-\else
-\fancyhead[L]{}
-\fi
-\fancyhead[R]{\bfseries\rightmark}
-\renewcommand{\headrulewidth}{0.5pt}
-\renewcommand{\footrulewidth}{0pt}
-\addtolength{\headheight}{0.5pt} % space for the rule
-\fancypagestyle{plain}{%
-  \fancyhead{} % get rid of headers on plain pages
-  \renewcommand{\headrulewidth}{0pt} % and the line
-}
 
 % Extra argument for the enumerate enviroment.
 % http://ctan.org/pkg/enumerate
@@ -111,33 +123,11 @@
 % For figure 'H' placement.
 \usepackage{float}
 
-\usepackage{etoolbox}
+%\usepackage{etoolbox}
 
 % For logo in footer.
-\usepackage[all]{background}
+%\usepackage[all]{background}
 \usepackage{lastpage}
-\newcommand\activateBG{%
-\backgroundsetup{
-  scale=1,
-  color=black,
-  opacity=1,
-  angle=0,
-  position=current page.south,
-  vshift=60pt,
-  contents={%
-  \small\sffamily%
-  \begin{minipage}{.8\textwidth}
-  \parbox[b]{.6\textwidth}{%
-  Σελίδα \thepage\ από \pageref{LastPage}}\hfill
-  \textcolor{red}{\rule{\textwidth}{1.5pt}}
-  \end{minipage}\hspace{.02\textwidth}%
-  \begin{minipage}{.18\textwidth}
-  \includegraphics[width=\linewidth,height=2cm,keepaspectratio]{images/university}
-  \end{minipage}%
-  }
-}%
-}
-\newcommand\deactivateBG{\backgroundsetup{contents={}}}
 
 % Quick image refs etc.
 \newcommand{\imageref}[1] {%
@@ -174,10 +164,38 @@
 % Minted package for the listings.
 \usepackage[newfloat=true]{minted}
 \setminted{%
-autogobble=true,
-breaklines=true,
-frame=single,
-linenos=false}
+	autogobble=true,%
+	breaklines=true,%
+	frame=none,%
+	linenos=false%
+}
 
 % For subfigures
 \usepackage{subcaption}
+
+% ---------------------
+% 		 TIKZ
+% ---------------------
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{tikzscale}
+\usetikzlibrary{shapes,arrows,calc}
+\usepackage{blox}
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{patterns, shadings, tikzmark}
+
+% ---------------------
+% 	  CUSTOM MATHS
+% ---------------------
+% http://tex.stackexchange.com/a/56953/78791
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+% http://tex.stackexchange.com/a/107190/78791
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%% Number specific equation in align*
+%\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+%
+%% bad fonts for implies?
+%\renewcommand{\implies}{=\!\Rightarrow}
+
