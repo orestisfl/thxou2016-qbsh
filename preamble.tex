@@ -1,0 +1,183 @@
+% Compile command:
+% xelatex -ini -shell-escape "&xelatex preamble.tex\dump"
+% or:
+% xelatex -ini -shell-escape -job-name="preamble" "&xelatex preamble.tex\dump"
+\RequirePackage[l2tabu, orthodox]{nag}
+% Specify the type of document.
+\documentclass[a4paper, titlepage]{report}
+
+\setcounter{tocdepth}{3} % subsub has numbers
+\setcounter{secnumdepth}{3} % subsub in toc
+
+% Disable par indents:
+% http://tex.stackexchange.com/a/55016/78791
+% http://ctan.org/pkg/parskip
+\usepackage{parskip}
+
+% Packages:
+% Argument 'table' for '\cellcolor{}' command.
+% Should be high because it might get loaded by another package with different arguments:
+% - http://tex.stackexchange.com/questions/87197/latex-error-option-clash-for-package-xcolor-for-table
+% - http://tex.stackexchange.com/questions/83101/option-clash-for-package-xcolor
+\usepackage[usenames, table]{xcolor}
+
+% The titlepic package allows you to place a picture on the title page (cover page) of a LaTeX document.
+\usepackage{titlepic}
+
+\usepackage{tikz}
+\usepackage[a4paper, margin=1.0in, bottom=1.5in]{geometry}
+
+% Select alternative section titles.
+% https://www.ctan.org/pkg/titlesec
+\usepackage{titlesec}
+
+% For \includegraphics.
+% https://ctan.org/pkg/graphicx
+\usepackage{graphicx}
+
+% Provides LaTeX the ability to create hyperlinks within the document.
+% https://www.ctan.org/pkg/hyperref
+% http://en.wikibooks.org/wiki/LaTeX/Hyperlinks#Hyperref
+\usepackage[bookmarks=true,colorlinks=true,linkcolor=blue]{hyperref}
+
+% Go to the top of an image when a figure reference is clicked:
+% http://stackoverflow.com/a/21251925/3430986%
+\usepackage{caption}
+
+% Math related:
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{bm}
+\usepackage{breqn}
+
+% http://tex.stackexchange.com/a/56953/78791
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+% http://tex.stackexchange.com/a/107190/78791
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+% Number specific equation in align*
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+% bad fonts for implies?
+\renewcommand{\implies}{=\!\Rightarrow}
+\usepackage{extarrows}
+
+% Chapter & page styling with fancyhdr.
+\ifdefined\chapter
+\titleformat{\chapter}[hang]{\bfseries\huge}{\thechapter}{2pc}{}
+\fi
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\ifdefined\chaptermark
+\renewcommand{\chaptermark}[1]{%
+  \markboth{#1}{}}
+\fi
+\renewcommand{\sectionmark}[1]{%
+  \markright{\thesection\ #1}}
+\fancyhf{} % delete current header and footer
+% Warning: using fancyhead and minted section names will result in tex capacity errors.
+\ifdefined\chaptermark
+\fancyhead[L]{\bfseries\leftmark}
+\else
+\fancyhead[L]{}
+\fi
+\fancyhead[R]{\bfseries\rightmark}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+\addtolength{\headheight}{0.5pt} % space for the rule
+\fancypagestyle{plain}{%
+  \fancyhead{} % get rid of headers on plain pages
+  \renewcommand{\headrulewidth}{0pt} % and the line
+}
+
+% Extra argument for the enumerate enviroment.
+% http://ctan.org/pkg/enumerate
+\usepackage{enumerate}
+
+% \multirow in tables.
+\usepackage{multirow}
+% Used for better handling of multi-line rows on tables.
+\usepackage{tabularx}
+% Better tables.
+\usepackage{booktabs}
+
+% For \FloatBarrier.
+\usepackage{placeins}
+
+% For maxsizebox:
+% http://stackoverflow.com/a/29143366/3430986
+\usepackage{adjustbox}
+% For figure 'H' placement.
+\usepackage{float}
+
+\usepackage{etoolbox}
+
+% For logo in footer.
+\usepackage[all]{background}
+\usepackage{lastpage}
+\newcommand\activateBG{%
+\backgroundsetup{
+  scale=1,
+  color=black,
+  opacity=1,
+  angle=0,
+  position=current page.south,
+  vshift=60pt,
+  contents={%
+  \small\sffamily%
+  \begin{minipage}{.8\textwidth}
+  \parbox[b]{.6\textwidth}{%
+  Σελίδα \thepage\ από \pageref{LastPage}}\hfill
+  \textcolor{red}{\rule{\textwidth}{1.5pt}}
+  \end{minipage}\hspace{.02\textwidth}%
+  \begin{minipage}{.18\textwidth}
+  \includegraphics[width=\linewidth,height=2cm,keepaspectratio]{images/university}
+  \end{minipage}%
+  }
+}%
+}
+\newcommand\deactivateBG{\backgroundsetup{contents={}}}
+
+% Quick image refs etc.
+\newcommand{\imageref}[1] {%
+\hyperref[fig:#1]{\figurename{} \ref{fig:#1}}}
+
+\newcommand{\imagerefc}[2] {%
+\hyperref[fig:#1]{fig:#2}}
+
+\newcommand{\imagehere}[2]{%
+\begin{figure}[H]%
+\centering%
+\includegraphics[keepaspectratio, width=1.0\linewidth]{images/#1}%
+\caption{#2}
+\label{fig:#1}%
+\end{figure}%
+}
+
+% Bibliography.
+\usepackage[numbers, sort]{natbib}
+\bibliographystyle{plain}
+
+% For quotations. Verbatim enviroment for non-code text.
+\usepackage{csquotes}
+
+% Define code enviroment for captions and whatnot.
+\newenvironment{code}{\captionsetup{type=listing}}{}
+% Fix tikz's "some package has redefined the meaning of the math-mode dollar sign" bug/error.
+% https://github.com/HiSPARC/infopakket/issues/27#issuecomment-134511920
+% http://tex.stackexchange.com/questions/165929/semiverbatim-with-tikz-in-beamer
+\makeatletter
+\global\let\tikz@ensure@dollar@catcode=\relax
+\makeatother
+
+% Minted package for the listings.
+\usepackage[newfloat=true]{minted}
+\setminted{%
+autogobble=true,
+breaklines=true,
+frame=single,
+linenos=false}
+
+% For subfigures
+\usepackage{subcaption}

@@ -1,0 +1,26 @@
+% polyglossia
+\usepackage{polyglossia}
+\setmainlanguage{greek}
+\setotherlanguages{english}
+
+% Fonts
+% fonts can't go in the .fmt file
+\usepackage{fontspec,unicode-math}
+\setmainfont[Mapping=tex-text]{DejaVu Sans}
+\newfontfamily\greekfont[Script=Greek]{DejaVu Sans}
+\newfontfamily\greekfontsf[Script=Greek]{DejaVu Sans}
+\setmonofont{Hack}
+\newfontfamily\greekfonttt[Scale=1.0]{Hack}
+\setmathfont{Asana-Math.otf}
+\setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{Asana-Math.otf}
+\usepackage{microtype} % microtype is font-dependant
+
+\author{%
+  Δημήτριος Κίρτσιος, 7705 \href{mailto:dimkirts@gmail.com}{dimkirts@gmail.com}\\
+  Μυλωνάκης Ελευθέριος, 7735 \href{mailto:elefmylo@auth.gr}{elefmylo@auth.gr}\\
+  Φλώρος-Μαλιβίτσης Ορέστης, 7796 \href{mailto:orestisf@ece.auth.gr}{orestisf@ece.auth.gr}\\
+  Δημανίδης Ιωάννης, 8358 \href{mailto:ioandima@auth.gr}{ioandima@auth.gr}\\
+  \textbf{Τμήμα Ηλ. Μηχανικών / Μηχανικών ΗΥ}\\
+  \textbf{Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης}
+}
+\titlepic{\includegraphics[width=0.40\textwidth]{images/university}}
