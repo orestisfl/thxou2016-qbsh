@@ -262,3 +262,5 @@ sympy-plots-for-*.tex/
 *.bak
 *.sav
 
+# macOS
+.DS_Store

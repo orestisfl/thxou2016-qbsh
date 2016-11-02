@@ -12,13 +12,23 @@
 
 \usepackage[onlymath,mathlf]{MinionPro}
 \usepackage[no-math]{fontspec}
-\setmainfont{Minion Pro}
-\setsansfont{Myriad Pro}[
-	UprightFont = MyriadPro-Regular,
-	ItalicFont = MyriadPro-It,
-	BoldFont = MyriadPro-SemiBold,
-	BoldItalicFont = MyriadPro-SemiBoldIt,
+\setmainfont{MinionPro}[
+	Path = fonts/,
+	Extension = .otf,
+	UprightFont = *-Regular,
+	ItalicFont = *-Italic,
+	BoldFont = *-SemiBold,
+	BoldItalicFont = *-SemiBoldItalic
 ]
+\setsansfont{MyriadPro}[
+	Path = fonts/,
+	Extension = .ttf,
+	UprightFont = *-Regular,
+	ItalicFont = *-Italic,
+	BoldFont = *-SemiBold,
+	BoldItalicFont = *-SemiBoldItalic
+]
+
 
 \linespread{1.05}
 
