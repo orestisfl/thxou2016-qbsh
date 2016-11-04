@@ -6,12 +6,15 @@
 % ---------------------
 % 		 FONTS
 % ---------------------
-\usepackage{amsfonts}
-\usepackage{amssymb}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
 \usepackage{amsmath}
 
-\usepackage[onlymath,mathlf]{MinionPro}
-\usepackage[no-math]{fontspec}
+%\usepackage[onlymath,mathlf]{MinionPro}
+%\usepackage[no-math]{fontspec}
+
+\usepackage[MnSymbol]{mathspec}
+
 \setmainfont{MinionPro}[
 	Path = fonts/,
 	Extension = .otf,
@@ -29,6 +32,7 @@
 	BoldItalicFont = *-SemiBoldItalic
 ]
 
+\setmathsfont(Digits,Greek,Latin)[Numbers={Proportional}]{Minion Pro}
 
 \linespread{1.05}
 

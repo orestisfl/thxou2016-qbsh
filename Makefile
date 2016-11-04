@@ -1,5 +1,5 @@
 MAINDOC = $(shell basename $$(pwd))
-LTXARGS = -pdf -lualatex -use-make --shell-escape -silent
+LTXARGS = -pdf -xelatex -use-make --shell-escape -silent
 
 .PHONY: $(MAINDOC).pdf all clean
 
