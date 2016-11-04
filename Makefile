@@ -1,4 +1,4 @@
-MAINDOC = $(shell basename $$(pwd))
+MAINDOC = $(shell basename "$$(pwd)")
 LTXARGS = -pdf -xelatex -use-make --shell-escape -silent
 
 .PHONY: $(MAINDOC).pdf all clean
