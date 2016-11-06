@@ -3,7 +3,16 @@
 Θα χρησιμοποιηθούν τα 2 datasets που προσφέρονται από την σελίδα του MIREX\cite{mirex}.
 
 \subsection{MIR-QBSH του Roger Jang}
-Το πρώτο dataset που θα χρησιμοποιηθεί είναι το "Jang Dataset"\cite{jang-dataset} από τον διαγωνισμό του 2016 (ωστόσο το dataset παραμένει ίδιο από το 2009). Το dataset έχει τα εξής χαρακτηριστικά:
+Το πρώτο dataset που θα χρησιμοποιηθεί είναι το "Jang Dataset"\cite{jang-dataset} από τον διαγωνισμό του 2016 (ωστόσο το dataset παραμένει ίδιο από το 2009). Το dataset περιέχει:
+\begin{itemize}
+\item Έναν φάκελο \texttt{midiFile}:
+\begin{itemize}
+\item Έχει 48 αποσπάσματα από τραγούδια μικρού μεγέθους τα περισσότερα (περίπου 30s) σε μορφή MIDI\cite{midi1996complete}.
+Αναφέρεται ότι πρωτόκολλο MIDI δεν μεταδίδει ηχητικό σήμα, αλλά μηνύματα που περιέχουν πληροφορίες σχετικά με το τονικό ύψος και την ένταση μιας νότας, καθώς επίσης και σήμα χρονισμού που προσδιορίζει την ταχύτητα - το tempo - ενός κομματιού.
+\item To \texttt{songlist.txt} περιέχει 4 στήλες: Όνομα Αρχείου - Αγγλικό Όνομα - Κινέζικο Όνομα - Αριθμός wav αρχείων που έχουν ηχογραφηθεί γι αυτό το τραγούδι.
+\end{itemize}
+
+\item Έναν φάκελο \texttt{waveFile}:
 \begin{itemize}
 \item Αποτελείται από 4431 queries και 195 subjects.
 \item Ο διαχωρισμός των αρχείων σε φακέλους γίνεται με την εξής ιεραρχία:
@@ -17,6 +26,7 @@
 pitch έγιναν με frame size 256 και μηδενικό overlap.
 \item Τα \texttt{.wav} files είναι στα 8KHz, 8bit, mono
 \item Όλες οι ηχογραφήσεις αρχίζουν από την αρχή του τραγουδιού και διαρκούν 8 δευτερόλεπτα.
+\end{itemize}
 \end{itemize}
 
 \subsection{Institute of Acoustics, Chinese Academy of Sciences (IOACAS)}
