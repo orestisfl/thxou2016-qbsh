@@ -141,6 +141,7 @@ Session.vim
 # *.ps
 # *.eps
 *.pdf
+*.svg
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
