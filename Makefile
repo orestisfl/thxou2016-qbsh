@@ -10,3 +10,4 @@ $(MAINDOC).pdf: $(MAINDOC).tex
 
 clean:
 	latexmk -CA
+	rm -rf *_minted* *.aux *.log *.out
