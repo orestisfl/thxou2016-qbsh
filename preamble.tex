@@ -163,9 +163,6 @@
 \usepackage[numbers, sort]{natbib}
 \bibliographystyle{plainnat}
 
-% For quotations. Verbatim enviroment for non-code text.
-\usepackage{csquotes}
-
 % Define code enviroment for captions and whatnot.
 \newenvironment{code}{\captionsetup{type=listing}}{}
 % Fix tikz's "some package has redefined the meaning of the math-mode dollar sign" bug/error.
@@ -186,6 +183,10 @@
 
 % For subfigures
 \usepackage{subcaption}
+
+% For quotations. Verbatim enviroment for non-code text.
+% csquotes should be loaded after fvextra, to avoid a warning from the lineno package
+\usepackage{csquotes}
 
 % ---------------------
 % 		 TIKZ
