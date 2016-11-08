@@ -115,7 +115,13 @@
 % Provides LaTeX the ability to create hyperlinks within the document.
 % https://www.ctan.org/pkg/hyperref
 % http://en.wikibooks.org/wiki/LaTeX/Hyperlinks#Hyperref
-\usepackage[hidelinks]{hyperref}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={blue!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!70!black}
+}
 
 % Go to the top of an image when a figure reference is clicked:
 % http://stackoverflow.com/a/21251925/3430986%
