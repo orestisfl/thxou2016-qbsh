@@ -1,7 +1,6 @@
 \newcommand*{\ls}{Locality-Sensitive}%
 \newcommand*{\lsh}{Locality-Sensitive Hashing}%
-\subsection{\lsh{}}
-\subsubsection{Ορισμός}
+\subsection{\lsh{}}\label{sub:lsh}
 Πρόκειται για έναν πιθανοτικό αλγόριθμο που έχει στενή σχέση με το data clustering και το nearest neighbor search.
 O αλγόριθμος \lsh{} δημιουργήθηκε με σκοπό την γρήγορη αναζήτηση σε μια μεγάλη βάση δεδομένων για την εύρεση παρόμοιων στοιχείων\cite{slaney2008locality}.
 Γενικά, κάθε σημείο της βάσης τοποθετείται σε ένα \href{https://en.wikipedia.org/wiki/Hash_table}{hash bucket} σύμφωνα με μια hash function.
@@ -15,7 +14,7 @@ O αλγόριθμος \lsh{} δημιουργήθηκε με σκοπό την 
 \begin{wrapfigure}{r}{0.5\textwidth}
         \centering
         \vspace{-20pt}\includegraphics[width=\linewidth]{related-work/ryynanen2008query}
-        \vspace{-20pt}\caption{block διάγραμμα από \cite{ryynanen2008query}}
+        \vspace{-20pt}\caption{block διάγραμμα από \protect\cite{ryynanen2008query}}
         \label{fig:ryynanen2008query}
 \end{wrapfigure}
 
@@ -27,6 +26,7 @@ O αλγόριθμος \lsh{} δημιουργήθηκε με σκοπό την 
 \begin{equation*}
 \norm{p_i - p_j} = (\sum\limits_{k=1}^{d}\abs{p_i(k) - p_j(k)}^2)^{1/2}
 \end{equation*}
+
 Το block διάγραμμα της εφαρμογής φαίνεται στο \imageref{ryynanen2008query}.
 Η τεχνική αυτή οδηγεί σε γρήγορες αλλά και ακριβείς αναζητήσεις.
 
@@ -55,13 +55,31 @@ O αλγόριθμος \lsh{} δημιουργήθηκε με σκοπό την 
 Συγκεκριμένα, στο \cite{wang2012query}, του οποίου το block διάγραμμα φαίνεται στο \imageref{wang2012query},
 παρουσιάζονται η μέθοδος note-based locality sensitive hashing (NLSH)
 σε συνδυασμό με pitch-based locality sensitive hashing (PLSH).
-%\leavevmode
+%\leavevmode%
 \begin{enumerate}
     \item PLSH Indexing:
     indexing με βάση τον τόνο της φωνής για γρήγορη διαγραφή των λιγότερο πιθανών υποψήφιων αποτελεσμάτων.
     \item NLSH Indexing:
     Θεωρείται δύσκολο ένα query να έχει με ακρίβεια ίδιο τόνο με το ground-truth MIDI αρχείο όταν ένας χρήστης πρέπει να κρατήσει το ύψος μιας νότα για μια συγκεκριμένη χρονική περίοδο.
     Για αυτό το λόγο αγνοείται η διάρκεια της νότας (μέχρι κάποιο επιτρεπόμενο error).
+\end{enumerate}
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+        \centering
+        \vspace{-20pt}\includegraphics[width=\linewidth]{related-work/park2015query}
+        \vspace{-20pt}\caption{block διάγραμμα από \protect\cite{park2015query}}
+        \label{fig:park2015query}
+\end{wrapfigure}
+
+Τέλος, αντί για χρήση \lsh{} το \citeyear{park2015query} στο \cite{park2015query} χρησιμοποιήθηκε multiple \href{https://en.wikipedia.org/wiki/Spectral_Hash}{Spectral Hashing}.
+Το block διάγραμμα φαίνεται στο \imageref{park2015query}
+Το spectral hashing υλοποιείται σύμφωνα με τα \cite{weiss2009spectral,weiss2009spectral-blog} ως εξής:
+%\leavevmode%
+\begin{enumerate}
+\item Find the principal components of the data using PCA.
+\item Calculate the $k$ smallest single-dimension analytical eigenfunctions of $L_p$ using a rectangular approximation along every PCA direction.
+This is done by evaluating the $k$ smallest eigenvalues for each direction, thus creating a list of $dk$ eigenvalues, and then sorting this list to find the $k$ smallest eigenvalues.
+\item Threshold the analytical eigenfunctions at zero, to obtain binary code.
 \end{enumerate}
 
 \undef{\ls}
