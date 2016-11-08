@@ -1,0 +1,69 @@
+\newcommand*{\ls}{Locality-Sensitive}%
+\newcommand*{\lsh}{Locality-Sensitive Hashing}%
+\subsection{\lsh{}}
+\subsubsection{Ορισμός}
+Πρόκειται για έναν πιθανοτικό αλγόριθμο που έχει στενή σχέση με το data clustering και το nearest neighbor search.
+O αλγόριθμος \lsh{} δημιουργήθηκε με σκοπό την γρήγορη αναζήτηση σε μια μεγάλη βάση δεδομένων για την εύρεση παρόμοιων στοιχείων\cite{slaney2008locality}.
+Γενικά, κάθε σημείο της βάσης τοποθετείται σε ένα \href{https://en.wikipedia.org/wiki/Hash_table}{hash bucket} σύμφωνα με μια hash function.
+Συνήθως (πχ σε εφαρμογές encryption) θέλουμε μια hash function να αντιστοιχεί 2 αντικείμενα στο ίδιο hash bucket μόνο όταν είναι ίδια.
+Ωστόσο, με \ls{} hash προσπαθούμε 2 αντικείμενα που είναι περίπου ίδια να τα αντιστοιχήσουμε στο ίδιο bucket.
+Έτσι, κάθε νέο query ομαδοποιείται με παρόμοια αντικείμενα σε κοινό bucket.
+
+\subsubsection{Εφαρμογή σε σύστημα QbSH}
+Στη βιβλιογραφία η πρώτη αναφορά χρήσης \lsh{} σε συστήματα QbSH έγινε το \citeyear{ryynanen2008query} στο \cite{ryynanen2008query}.
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+        \centering
+        \vspace{-20pt}\includegraphics[width=\linewidth]{related-work/ryynanen2008query}
+        \vspace{-20pt}\caption{block διάγραμμα από \cite{ryynanen2008query}}
+        \label{fig:ryynanen2008query}
+\end{wrapfigure}
+
+Η στρατηγική που ακολουθείται χωρίζεται στη
+μετατροπή των queries σε μορφή που μπορεί να χρησιμοποιηθεί στην αναζήτηση και
+την αντιστοίχηση των queries σε μελωδίες της βάσης.
+Για κάθε pitch vector από τα queries αναζητούνται οι κοντινότεροι γείτονες από το database.
+Η ομοιότητα 2 pitch vector υπολογίζεται από τη σχέση:
+\begin{equation*}
+\norm{p_i - p_j} = (\sum\limits_{k=1}^{d}\abs{p_i(k) - p_j(k)}^2)^{1/2}
+\end{equation*}
+Το block διάγραμμα της εφαρμογής φαίνεται στο \imageref{ryynanen2008query}.
+Η τεχνική αυτή οδηγεί σε γρήγορες αλλά και ακριβείς αναζητήσεις.
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{related-work/wang2012query}
+        \caption{block διάγραμμα από \protect\cite{wang2012query}}
+        \label{fig:wang2012query}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{related-work/guo2012query}
+        \caption{block διάγραμμα από \protect\cite{guo2012query}}
+        \label{fig:guo2012query}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.3\linewidth}
+        \includegraphics[width=\linewidth]{related-work/guo2013query}
+        \caption{block διάγραμμα από \protect\cite{guo2013query}}
+        \label{fig:guo2013query}
+    \end{subfigure}
+    \caption{block διαγράμματα από συγγενικά συστήματα QbSH που χρησιμοποιούν \lsh{}}
+    \label{fig:many-lsb-blocks}
+\end{figure}
+
+Τις χρονιές \citeyear{wang2012query} και \citeyear{guo2013query} εμφανίστηκαν πιο πολύπλοκα συστήματα QbSH που χρησιμοποιούσαν \lsh{}.
+Συγκεκριμένα, στο \cite{wang2012query}, του οποίου το block διάγραμμα φαίνεται στο \imageref{wang2012query},
+παρουσιάζονται η μέθοδος note-based locality sensitive hashing (NLSH)
+σε συνδυασμό με pitch-based locality sensitive hashing (PLSH).
+%\leavevmode
+\begin{enumerate}
+    \item PLSH Indexing:
+    indexing με βάση τον τόνο της φωνής για γρήγορη διαγραφή των λιγότερο πιθανών υποψήφιων αποτελεσμάτων.
+    \item NLSH Indexing:
+    Θεωρείται δύσκολο ένα query να έχει με ακρίβεια ίδιο τόνο με το ground-truth MIDI αρχείο όταν ένας χρήστης πρέπει να κρατήσει το ύψος μιας νότα για μια συγκεκριμένη χρονική περίοδο.
+    Για αυτό το λόγο αγνοείται η διάρκεια της νότας (μέχρι κάποιο επιτρεπόμενο error).
+\end{enumerate}
+
+\undef{\ls}
+\undef{\lsh}
+\FloatBarrier
