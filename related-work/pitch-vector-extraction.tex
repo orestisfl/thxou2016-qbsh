@@ -1,0 +1,16 @@
+\subsection{Pitch Vector Extraction}
+Όπως \hyperref[item:pitch-vector]{αναφέρθηκε} προηγουμένως το dataset του Jang (\cite{jang-dataset})
+παρέχει αρχεία \texttt{.pv} για τα \texttt{.wav} queries.
+Ωστόσο, αυτό δεν ισχύει για τα ground truth midi files και το IOACAS dataset (\cite{IOACAS-dataset}).
+Επίσης, ένα ολοκληρωμένο σύστημα QbSH δεν μπορεί να βασιστεί στην χειροκίνητη δημιουργία αυτού το αρχείου από τον χρήστη.
+Για αυτό το λόγο, όπως περιγράφεται στα
+\cite{ryynanen2008query, guo2012query, wang2012query, guo2013query, park2015query}
+και \cite[Chapter~7]{jang2011audio},
+εξάγονται τα pitch vectors από τα αρχεία ήχου.
+Το block "pitch extraction" φαίνεται στα διαγράμματα
+\hyperref[fig:ryynanen2008query]{\ref{fig:ryynanen2008query}}
+\hyperref[fig:many-lsb-blocks]{\ref{fig:many-lsb-blocks}}
+και \hyperref[fig:park2015query]{\ref{fig:park2015query}}.
+Αυτή η διαδικασία μπορεί να γίνει για παράδειγμα με το
+\href{http://mirlab.org/jang/matlab/toolbox/sap/}{Speech and Audio Processing Toolbox του Jang}
+ή με άλλες τεχνικές όπως αυτές που περιγράφονται για παράδειγμα στο \cite{ryynanen2008query}.
