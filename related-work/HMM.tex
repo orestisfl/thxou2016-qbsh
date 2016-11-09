@@ -1,16 +1,25 @@
 \newcommand*{\hmm}{Hidden Markov Models}%
 \subsection{\hmm{}}
 \subsubsection{Εισαγωγή}
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{0.48\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{fosler1998markov-1}
+            \caption{Παράδειγμα μαρκοβιανής αλυσίδας με υποθετικά νούμερα \protect\cite{fosler1998markov}}
+            \label{fig:fosler1998markov-1}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.48\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{HMMGraph}
+            \caption{Παράδειγμα κρυφής μαρκοβιανής αλυσίδας με υποθετικά νούμερα \protect\cite{wikiHMM}}
+            \label{fig:HMMGraph}
+    \end{subfigure}
+    \caption{Παραδείγματα Μαρκοβιανών Μοντέλων}
+\end{figure}
 Ένα Hidden Markov Model είναι μια διπλά στοχαστική διαδικασία:
 υπάρχει μια κρυφή διαδικασία η οποία μπορεί να παρατηρηθεί μέσω άλλων στοχαστικών διαδικασιών που παράγουν την ακολουθία των παρατηρηθέντων συμβόλων \cite{rabiner1986introduction}.
 Πρόκειται για μια Μαρκοβιανή αλυσίδα (Markov Model ή Markov Chain) με κρυφές καταστάσεις.
-
-\begin{wrapfigure}[15]{r}{0.5\textwidth}
-        \centering
-        \vspace{-20pt}\includegraphics[width=\linewidth]{fosler1998markov-1}
-        \vspace{-20pt}\caption{Παράδειγμα μαρκοβιανής αλυσίδας με υποθετικά νούμερα \protect\cite{fosler1998markov}}
-        \label{fig:fosler1998markov-1}
-\end{wrapfigure}
 
 Ένα παράδειγμα Μαρκοβιανής αλυσίδας δίνεται από το \cite{fosler1998markov}:
 Υποθέτουμε ότι ο καιρός έχει 3 πιθανές καταστάσεις: ηλιοφάνεια, βροχή και ομίχλη.
@@ -19,20 +28,13 @@
 Αυτό ονομάζεται Μαρκοβιανή ιδιότητα πρώτης τάξης (first-order Markov Assumption).
 Η αναπαράσταση του συστήματος αυτού φαίνεται στο \imageref{fosler1998markov-1}.
 
-\begin{wrapfigure}[15]{r}{0.5\textwidth}
-        \centering
-        \vspace{-20pt}\includegraphics[width=\linewidth]{HMMGraph}
-        \vspace{-20pt}\caption{Παράδειγμα κρυφής μαρκοβιανής αλυσίδας με υποθετικά νούμερα \protect\cite{wikiHMM}}
-        \label{fig:HMMGraph}
-\end{wrapfigure}
-
 Αν τροποποιήσουμε το παράδειγμα έτσι ώστε να πρέπει να μαντέψουμε τον καιρό της ημέρας $n$ χωρίς να μπορούμε να παρατηρήσουμε άμεσα τον καιρό (αν είμαστε κλειδωμένοι σε ένα δωμάτιο σύμφωνα με το \cite{fosler1998markov})
 αλλά έχουμε μόνο κάποιο έμμεσο τρόπο (αν αυτός που μας φέρνει το φαγητό κρατάει ομπρέλα) τότε μιλάμε για ένα Hidden Markov Model.
 
 Στο \imageref{HMMGraph} (από \cite{wikiHMM}) φαίνεται ένα άλλο παράδειγμα \hmm{} όπου ο παρατηρητής προσπαθεί να μαντέψει τι καιρό έχει σε ένα μέρος σύμφωνα με τις συνήθειες (Walk, Shop, Clean) του φίλου του.
 
 \subsubsection{Εφαρμογή σε συστήματα QbSH}
-\begin{figure}
+\begin{figure}[htb]
     \centering
     \begin{subfigure}{0.45\linewidth}
         \includegraphics[height=3cm, width=\linewidth, keepaspectratio]{pardo2004name-alouette}
@@ -62,10 +64,10 @@
 Η μέγιστη γενική πιθανότητα βρίσκεται ως $\max_{j=1...n}{H(m,j)}$.
 
 \begin{figure}
-	\centering
-	\includegraphics[width=0.65\textwidth]{jang2005continuous-chmm}
-	\caption{Δημιουργία CHMM από το τραγούδι "Ten Little Indians" \protect\cite{jang2005continuous}}
-	\label{fig:jang2005continuous-chmm}
+    \centering
+    \includegraphics[width=0.65\textwidth]{jang2005continuous-chmm}
+    \caption{Δημιουργία CHMM από το τραγούδι "Ten Little Indians" \protect\cite{jang2005continuous}}
+    \label{fig:jang2005continuous-chmm}
 \end{figure}
 
 Τέλος, όπως φαίνεται στο \imageref{4432653-fig-2} το \cite{slaney2008locality} χρησιμοποιεί \hmm{} στη φάση του segmentation.
