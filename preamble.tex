@@ -229,6 +229,9 @@
 
 % To use float.sty properly, load package float before wrapfig, and declare any new float types after loading both.
 \usepackage{wrapfig}
+\newcommand{\forceendwrapfig}{\makeatletter%
+\WF@finale%
+\makeatother}
 
 % Fix URLs not breaking in citations
 % http://tex.stackexchange.com/a/115820/93245
