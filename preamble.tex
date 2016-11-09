@@ -116,11 +116,13 @@
 % https://www.ctan.org/pkg/hyperref
 % http://en.wikibooks.org/wiki/LaTeX/Hyperlinks#Hyperref
 \usepackage{hyperref}
+
 \hypersetup{
     colorlinks,
     linkcolor={blue!50!black},
     citecolor={blue!50!black},
-    urlcolor={blue!70!black}
+    urlcolor={blue!70!black},
+    breaklinks=true
 }
 
 % Go to the top of an image when a figure reference is clicked:
@@ -226,3 +228,8 @@
 
 % To use float.sty properly, load package float before wrapfig, and declare any new float types after loading both.
 \usepackage{wrapfig}
+
+% Fix URLs not breaking in citations
+% http://tex.stackexchange.com/a/115820/93245
+\usepackage{breakcites}
+\Urlmuskip=0mu plus 1mu\relax
