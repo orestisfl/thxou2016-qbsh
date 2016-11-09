@@ -143,6 +143,13 @@
 
 % For \FloatBarrier.
 \usepackage[section]{placeins}
+\makeatletter
+\AtBeginDocument{%
+  \expandafter\renewcommand\expandafter\subsection\expandafter{%
+    \expandafter\@fb@secFB\subsection
+  }%
+}
+\makeatother
 
 % For maxsizebox:
 % http://stackoverflow.com/a/29143366/3430986
