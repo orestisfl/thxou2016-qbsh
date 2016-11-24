@@ -1,4 +1,4 @@
-MAINDOC = $(shell basename "$$(pwd)")
+MAINDOC = thxou
 LTXARGS = -pdf -xelatex -use-make --shell-escape -silent
 
 .PHONY: $(MAINDOC).pdf all clean embed
