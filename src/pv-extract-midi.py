@@ -5,7 +5,7 @@ import sys
 import math
 import music21
 
-framesize = 0.01
+framesize = 0.032
 
 for file in sys.argv[1:]:
     filename, fileext = os.path.splitext(file)
