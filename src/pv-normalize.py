@@ -7,6 +7,7 @@ import numpy as np
 for file in sys.argv[1:]:
     filename, fileext = os.path.splitext(file)
     if fileext == '.pv':
+        print('Processing ' + filename + '.pv', end = '\r')
         pv = np.array([int(line.strip()) for line in open(file, 'r')])
         avg = np.mean(pv)
         std = np.std(pv)
