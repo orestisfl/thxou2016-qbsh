@@ -267,3 +267,5 @@ sympy-plots-for-*.tex/
 
 # macOS
 .DS_Store
+
+datasets/
