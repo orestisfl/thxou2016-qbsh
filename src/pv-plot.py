@@ -13,5 +13,10 @@ wavepv = np.array([float(line.strip()) for line in open(wave, 'r')])
 
 idx = np.arange(0, len(wavepv))
 
+distance, path = fastdtw(midipv, wavepv, dist = euclidean)
+
+print('DTW distance: 'distance)
+
 plt.plot(idx, wavepv, idx, midipv[idx])
 plt.show()
+
