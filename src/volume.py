@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # Beat tracking example
 import librosa
 import numpy as np
