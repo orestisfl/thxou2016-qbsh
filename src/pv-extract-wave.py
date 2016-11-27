@@ -11,7 +11,7 @@ fs = 8000 # Default MIREX WAV sampling rate
 framesize = 0.032 # In seconds
 
 # Hopsize determines how many samples we need in order to achieve desired framesize
-# Winsize is (at least for now) arbitrary
+# Winsize is (at least for now) arbitrary, 2048 seems to give best results
 winsize = 2048
 hopsize = int(round(fs*framesize))
 # tol = 0.1
