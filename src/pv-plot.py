@@ -15,7 +15,7 @@ idx = np.arange(0, len(wavepv))
 
 distance, path = fastdtw(midipv, wavepv, dist = euclidean)
 
-print('DTW distance: 'distance)
+print('DTW distance: ', distance)
 
 plt.plot(idx, wavepv, idx, midipv[idx])
 plt.show()
