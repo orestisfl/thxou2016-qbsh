@@ -22,7 +22,7 @@ ax.plot(idx, pv_2[idx], label = file_2)
 ax.set_ylabel('Pitch value')
 ax.set_xlabel('Frame index')
 ax.set_title('DTW Distance: ' + str(round(distance, 2)))
-ax.legend(bbox_to_anchor=(0, 1.2, 1, 0), mode='expand',
+ax.legend(bbox_to_anchor=(0, 1.2, 1, 0), mode = 'expand',
     fontsize = 'small', borderaxespad = 0)
 box = ax.get_position()
 ax.set_position([box.x0, box.y0, box.width, box.height * .9])
