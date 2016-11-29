@@ -49,8 +49,7 @@ def main():
         else:
             print("{} {} doesn't support extension '{}'.".format(sys.argv[0], action.name, fileext), file=sys.stderr)
     if options.pickle:
-        database_name = 'database-{}.pickle'.format(action.name)
-        with open(database_name, 'wb') as file_object:
+        with open(options.pickle_database, 'wb') as file_object:
             pickle.dump(pickle_pvs, file_object)
     return 0
 
@@ -85,11 +84,22 @@ def parse_args(args):
         action='store_true',
         help='Save result as pickle file.'
     )
+    parser.add_argument(
+        "--pickle-database", "-d",
+        metavar="PICKLE FILE",
+        type=str,
+        default=None,
+        help="Pickle where results should be stored. Requires '--pickle'."
+    )
 
     # Validate
     options = parser.parse_args(args)
     if options.recursive:
         raise NotImplementedError("--recursive")
+    if options.pickle and not options.pickle_database:
+        options.pickle_database = 'database-{}.pickle'.format(action.name)
+    elif options.pickle_database and not options.pickle:
+        parser.error("'--pickle-database' requires '--pickle'.")
 
     return action, options
 
