@@ -22,9 +22,8 @@ pitch_tracker = pitch('yin', winsize, hopsize, fs)
 pitch_tracker.set_unit('midi')
 # pitch_tracker.set_tolerance(tol)
 
-pv = []
-
 for file in sys.argv[1:]:
+    pv = []
     filename, fileext = os.path.splitext(file)
     if fileext == '.wav':
         print('Processing ' + filename + '.wav', end='\r')
