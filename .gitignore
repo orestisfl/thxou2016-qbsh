@@ -51,6 +51,8 @@ slprj/
 __pycache__/
 *.py[cod]
 *$py.class
+# Pickle files
+*.pickle
 
 # C extensions
 *.so

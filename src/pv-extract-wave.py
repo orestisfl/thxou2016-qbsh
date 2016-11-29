@@ -46,13 +46,17 @@ def save_pitch_vector(pitch_vector, filename):
 def main():
     # TODO: proper argparse
     file_list = sys.argv[1:]
+    pitch_vectors = {}
     for filename in tqdm(file_list):
         base_name, extension = os.path.splitext(filename)
         if extension.lower() == '.wav':
             pitch_vector = pitch_vector_from_wav(filename)
             save_pitch_vector(pitch_vector, base_name + '.mpv')
+            pitch_vectors[base_name] = pitch_vector
         else:
             print("{} supports only files ending with '.wav'".format(sys.argv[0]), file=sys.stderr)
+    with open('database.pickle', 'wb') as file_object:
+        pickle.dump(pitch_vectors, file_object)
     return 0
 
 if __name__ == '__main__':
