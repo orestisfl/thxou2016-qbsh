@@ -27,16 +27,19 @@ def main(args):
 
 def _init_queries(options):
     if options.pickle:
-        return {idx: _pickle_load(options.query_database)[idx] for idx in options.query}
+        queries = {idx: _pickle_load(options.query_database)[idx] for idx in options.query}
     elif options.wav:
-        return {idx: pitch_vectors.pitch_vector_from_wav(idx) for idx in options.query}
+        queries = {idx: pitch_vectors.pitch_vector_from_wav(idx) for idx in options.query}
     elif options.pitch_file:
-        return {idx: pitch_vectors.load_pitch_vector(idx) for idx in options.query}
+        queries = {idx: pitch_vectors.load_pitch_vector(idx) for idx in options.query}
     elif options.pickle_whole:
         queries = {}
         for database in options.query:
             queries.update(_pickle_load(database))
-        return queries
+    if options.normalize:
+        for idx, pv in queries.items():
+            queries[idx] = pitch_vectors.normalize(pv)
+    return queries
 
 
 def _pickle_load(filename):
@@ -70,6 +73,12 @@ def _parse_args(args):
         action="store_true",
         default=False,
         help="Query is from a pickle database. Positional arguments are used as indices."
+    )
+    parser.add_argument(
+        "--normalize",
+        action="store_true",
+        default=False,
+        help="Normalize query pitch vector."
     )
     parser.add_argument(
         "--pickle-whole",
