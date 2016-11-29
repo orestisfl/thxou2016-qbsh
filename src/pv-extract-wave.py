@@ -4,7 +4,7 @@
 # https://github.com/aubio/aubio/blob/master/python/demos/demo_pitch.py
 
 import os
-import sys
+import numpy as np
 from aubio import source, pitch
 
 fs = 8000  # Default MIREX WAV sampling rate
@@ -22,24 +22,41 @@ pitch_tracker = pitch('yin', winsize, hopsize, fs)
 pitch_tracker.set_unit('midi')
 # pitch_tracker.set_tolerance(tol)
 
-for file in sys.argv[1:]:
+
+def pitch_vector_from_wav(filename):
     pv = []
-    filename, fileext = os.path.splitext(file)
-    if fileext == '.wav':
-        print('Processing ' + filename + '.wav', end='\r')
-        signal = source(file, fs, hopsize)
-        while True:
-            samples, read = signal()
-            pitch = pitch_tracker(samples)[0]
-            confidence = pitch_tracker.get_confidence()
-            # Set bad pitch values to 0
-            if confidence < 0.4 or pitch < 0:
-                pitch = 0.
-            pv += [pitch]
-            if read < hopsize:
-                break  # end of file reached
-        fd = open(filename + '.mpv', 'w')
-        for p in pv:
-            fd.write("%s\n" % p)
-        fd.close()
-print()
+    signal = source(filename, fs, hopsize)
+    while True:
+        samples, read = signal()
+        pitch = pitch_tracker(samples)[0]
+        confidence = pitch_tracker.get_confidence()
+        # Set bad pitch values to 0
+        if confidence < 0.4 or pitch < 0:
+            pitch = 0.
+        pv.append(pitch)
+        if read < hopsize:
+            return np.array(pv)
+
+
+def save_pitch_vector(pitch_vector, filename):
+    with open(filename, 'w') as file_object:
+        print('\n'.join(str(p) for p in pitch_vector), file=file_object)
+
+
+def main():
+    # TODO: proper argparse
+    file_list = sys.argv[1:]
+    for filename in tqdm(file_list):
+        base_name, extension = os.path.splitext(filename)
+        if extension.lower() == '.wav':
+            pitch_vector = pitch_vector_from_wav(filename)
+            save_pitch_vector(pitch_vector, base_name + '.mpv')
+        else:
+            print("{} supports only files ending with '.wav'".format(sys.argv[0]), file=sys.stderr)
+    return 0
+
+if __name__ == '__main__':
+    import sys
+    import pickle
+    from tqdm import tqdm
+    sys.exit(main())
