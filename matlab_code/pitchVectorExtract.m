@@ -31,6 +31,6 @@ function result = pitchVectorExtract(audio_id,sound_file_name)
 
     % Normalize the pitch vectors
 %      F0 = F0/mean(F0);
-%     F0 = normr(F0);
+    F0 = normr(F0);
     result = F0;
     return;
