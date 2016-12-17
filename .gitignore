@@ -271,3 +271,6 @@ sympy-plots-for-*.tex/
 .DS_Store
 
 datasets/
+
+#added by lefos
+matlab_code/*.wav
