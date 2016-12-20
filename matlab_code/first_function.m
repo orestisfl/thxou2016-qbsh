@@ -22,7 +22,7 @@ function reduced_array = reduceDimensions(preproc_array,nu)
     a=0
 
 function final_matrix = creationOfData(audio_id,class_id)
-    folder_name = strcat('../',audio_id,'/*.wav')
+    folder_name = strcat('../database/',audio_id,'/*.wav')
     files = dir(folder_name);
     counter = 1;
     number_of_features = 797; %TODO change it to get length of Extractor

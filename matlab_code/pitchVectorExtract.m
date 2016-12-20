@@ -1,5 +1,5 @@
 function result = pitchVectorExtract(audio_id,sound_file_name)
-    sound_file_name = strcat('../',audio_id,'/',sound_file_name)
+    sound_file_name = strcat('../database/',audio_id,'/',sound_file_name)
     
     [y,fs] = audioread(sound_file_name);
 %     sound(y,fs); % listen to that song
