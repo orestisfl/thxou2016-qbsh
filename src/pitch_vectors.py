@@ -136,8 +136,7 @@ def save_pitch_vector(pitch_vector, filename):
 def normalize(pitch_vector):
     pitch_vector = pitch_vector[pitch_vector != 0]
     avg = np.mean(pitch_vector)
-    std = np.std(pitch_vector)
-    return (pitch_vector - avg) / std
+    return (pitch_vector - avg)
 
 
 def load_pitch_vector(filename):
