@@ -1,5 +1,5 @@
 function [final,final_features,final_labels] = first_function()
-    folder_names = ['00020';'00014';'00017';'00022']
+    folder_names = ['00014';'00017';'00020';'00022';'00030';'00039']
     final = data_fuser(folder_names);
     
     %shuffle the final matrix
