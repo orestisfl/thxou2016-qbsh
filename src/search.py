@@ -6,7 +6,6 @@ from fastdtw import fastdtw
 
 import pitch_vectors
 
-
 def main(args):
     options = _parse_args(args[1:])
     logging.debug("Got options: %s.", str(options))
@@ -16,11 +15,14 @@ def main(args):
     logging.debug("Got a ground truth of size %d and %d queries.", len(ground_truth), len(queries))
 
     for query, pitch_vector in queries.items():
-        logging.debug("Processing query: %s with a pitch vector of size %d.", query, len(pitch_vector))
+        logging.info("Processing query: %s.", query)
+        logging.debug("Query PV size: %dx1." ,len(pitch_vector))
         scores = options.method.search_func(pitch_vector, ground_truth)
-        best = min(scores, key=scores.get)
-        print(query, '==', best, 'with', scores[best], 'distance')
-        print(scores)
+        sorted_matches = sorted(scores, key=scores.get)
+        logging.info("1st match: %s with distance: %f", sorted_matches[0], scores[sorted_matches[0]])
+        logging.info("2nd match: %s with distance: %f", sorted_matches[1], scores[sorted_matches[1]])
+        logging.info("3rd match: %s with distance: %f", sorted_matches[2], scores[sorted_matches[2]])
+        logging.debug(scores)
 
     return 0
 
@@ -141,7 +143,7 @@ if __name__ == '__main__':
     import sys
     import pickle
     from collections import namedtuple
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.INFO)
     QUERY_TYPES = ["wav, pickle", "pv"]
     PICKLE_QUERY_DEFAULT = 'database-wav-extract.pickle'
     SearchMethod = namedtuple("SearchMethod", ["name", "search_func"])
