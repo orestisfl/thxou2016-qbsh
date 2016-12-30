@@ -25,4 +25,4 @@ find . -iname "*.wav" -print0 | xargs -0 ./pitch_vectors.py wav-extract --pickle
 
 # Start searching in .wav database. This will take way too long with the current implementation.
 # It's the last command so you'll probably want to ctrl+c it after a while.
-./search.py --pickle-whole --database "./midi-normalized.pickle" "./wav-normalized.pickle"
+./search.py --pickle-whole --database "./midi-normalized.pickle" "./wave-normalized.pickle"
