@@ -16,12 +16,12 @@ def main(args):
 
     for query, pitch_vector in queries.items():
         logging.info("Processing query: %s.", query)
-        logging.debug("Query PV size: %dx1." ,len(pitch_vector))
         scores = options.method.search_func(pitch_vector, ground_truth)
         sorted_ground_truths = sorted(scores, key=scores.get)
         # np.where returns an 1-element tuple
         matches = np.where([query[-9:-4] in match for match in sorted_ground_truths[:10]])[0]
-        if matches:
+        logging.debug(sorted_ground_truths[:10])
+        if len(matches) > 0:
             logging.info("Match found! (Ranked %d)", matches[0])
         else:
             logging.info("Match not found.")
