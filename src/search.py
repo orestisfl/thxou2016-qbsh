@@ -18,12 +18,13 @@ def main(args):
         logging.info("Processing query: %s.", query)
         logging.debug("Query PV size: %dx1." ,len(pitch_vector))
         scores = options.method.search_func(pitch_vector, ground_truth)
-        sorted_matches = sorted(scores, key=scores.get)
-        logging.info("1st match: %s with distance: %f", sorted_matches[0], scores[sorted_matches[0]])
-        logging.info("2nd match: %s with distance: %f", sorted_matches[1], scores[sorted_matches[1]])
-        logging.info("3rd match: %s with distance: %f", sorted_matches[2], scores[sorted_matches[2]])
-        logging.debug(scores)
-
+        sorted_ground_truths = sorted(scores, key=scores.get)
+        # np.where returns an 1-element tuple
+        matches = np.where([query[-9:-4] in match for match in sorted_ground_truths[:10]])[0]
+        if matches:
+            logging.info("Match found! (Ranked %d)", matches[0])
+        else:
+            logging.info("Match not found.")
     return 0
 
 

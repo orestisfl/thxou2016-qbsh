@@ -18,7 +18,7 @@ find . -iname "*.pv" -print0 | xargs -0 ./pitch_vectors.py normalize --pickle --
 find . -iname "*.wav" -print0 | xargs -0 ./pitch_vectors.py wav-extract --pickle --normalize --pickle-database "./wav-normalized.pickle"
 
 # Pass all 00031.npv as arguments in search. Without normalizing.
-find . -iname "00031.npv" -print0 | xargs -0 ./search.py --pitch-file --database "./midi-normalized.pickle"
+# find . -iname "00031.npv" -print0 | xargs -0 ./search.py --pitch-file --database "./midi-normalized.pickle"
 # Same but with normalizing the pitch vectors first.
 #find waveFile/ -iname "00031.pv" -print0 | xargs -0 ./search.py --normalize --pitch-file --database "./midi.pickle"
 
