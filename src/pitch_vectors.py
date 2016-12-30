@@ -146,11 +146,12 @@ def normalize(pitch_vector):
     # The jumps between 2 consecutive frames cannot be more than +/- T2 semitones, here T2 = 15
     T2 = 15
     for i, pitch in enumerate(pitch_vector[:-2]):
-        diff = pitch_vector[i+1] - pitch
-        if diff > T2: pitch_vector[i+1] = pitch + diff
+        diff = pitch_vector[i + 1] - pitch
+        if diff > T2:
+            pitch_vector[i + 1] = pitch + diff
 
     # Every unvoiced frame is set to the pitch of the previous voiced frame
-    last_voiced = mean # In case we start with an unvoiced frame (should be rare as we trimmed)
+    last_voiced = mean  # In case we start with an unvoiced frame (should be rare as we trimmed)
     for i, pitch in enumerate(pitch_vector):
         if pitch == 0:
             pitch_vector[i] = last_voiced
@@ -159,7 +160,7 @@ def normalize(pitch_vector):
 
     # Moving Average smoothing of order MA, here MA = 9
     MA = 9
-    pitch_vector = np.convolve(pitch_vector, np.ones((MA,))/MA, mode='valid')
+    pitch_vector = np.convolve(pitch_vector, np.ones((MA,)) / MA, mode='valid')
 
     # Remove mean
     # pitch_vector = pitch_vector - mean

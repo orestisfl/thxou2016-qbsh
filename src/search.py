@@ -6,6 +6,7 @@ from fastdtw import fastdtw
 
 import pitch_vectors
 
+
 def main(args):
     options = _parse_args(args[1:])
     logging.debug("Got options: %s.", str(options))
