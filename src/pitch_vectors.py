@@ -134,9 +134,36 @@ def save_pitch_vector(pitch_vector, filename):
 
 
 def normalize(pitch_vector):
-    pitch_vector = pitch_vector[pitch_vector != 0]
-    avg = np.mean(pitch_vector)
-    return (pitch_vector - avg)
+    # Remove leading and trailing zeros
+    pitch_vector = np.trim_zeros(pitch_vector)
+
+    # Mark everything outside +/- T1 semitones from the mean as unvoiced (0), here T1 = 20
+    T1 = 20
+    mean = np.mean(pitch_vector)
+    pitch_vector[pitch_vector >= mean + T1] = 0
+    pitch_vector[pitch_vector <= mean - T1] = 0
+
+    # The jumps between 2 consecutive frames cannot be more than +/- T2 semitones, here T2 = 15
+    T2 = 15
+    for i, pitch in enumerate(pitch_vector[:-2]):
+        diff = pitch_vector[i+1] - pitch
+        if diff > T2: pitch_vector[i+1] = pitch + diff
+
+    # Every unvoiced frame is set to the pitch of the previous voiced frame
+    last_voiced = mean # In case we start with an unvoiced frame (should be rare as we trimmed)
+    for i, pitch in enumerate(pitch_vector):
+        if pitch == 0:
+            pitch_vector[i] = last_voiced
+        else:
+            last_voiced = pitch
+
+    # Moving Average smoothing of order MA, here MA = 9
+    MA = 9
+    pitch_vector = np.convolve(pitch_vector, np.ones((MA,))/MA, mode='valid')
+
+    # Remove mean
+    # pitch_vector = pitch_vector - mean
+    return pitch_vector
 
 
 def load_pitch_vector(filename):

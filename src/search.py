@@ -116,9 +116,13 @@ def _parse_args(args):
     return options
 
 
-def dtw(x, y):
-    x, y = make_same_length(x, y)
-    distance, _ = fastdtw(x, y, dist=euclidean)
+def dtw(q, t):
+    q, t = make_same_length(q, t)
+    # d_beg = sum(q[1:2])/2 - sum(t[1:2])/2
+    # q = q - d_beg
+    d_mean = np.mean(q) - np.mean(t)
+    q = q - d_mean
+    distance, path = fastdtw(q, t, radius=2, dist=euclidean)
     return distance
 
 
