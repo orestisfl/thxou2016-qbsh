@@ -36,7 +36,7 @@ def main():
         pickle_pvs = {}
     target_extension = action.target_extension
     if options.normalize:
-        target_extension = target_extension.replace('.', '.n')
+        target_extension = '.npv'
     for filename in tqdm(options.files):
         base_name, fileext = os.path.splitext(filename)
         if action.extension_check(fileext):
@@ -152,7 +152,7 @@ if __name__ == '__main__':
     Action = namedtuple('Action', ['name', 'extension_check', 'get_pv', 'target_extension'])
     # TODO: action: create pickle from .pv files.
     ACTIONS = [
-        Action('normalize', (lambda ext: 'pv' in ext.lower()), load_pitch_vector, '.pv'),
+        Action('normalize', (lambda ext: 'pv' in ext.lower()), load_pitch_vector, '.npv'),
         Action('wav-extract', (lambda ext: ext.lower() == '.wav'), pitch_vector_from_wav, '.pv'),
         Action('midi-extract', (lambda ext: ext.lower() in ['.midi', '.mid']), pitch_vector_from_midi, '.pv')
     ]
