@@ -18,3 +18,5 @@ This should iterate every element in `wave.pickle`, normalize it (maybe we shoul
 IOACAS on the other hand, states:
 
 > No guarantee for each humming starts from the beginning of the songs.
+
+We consider a match if for each query, the ground truth is contained in the top ten matches sorted by DTW score. Thus, in the MIR corpus we were able to achieve an accuracy of 56.6% with a sample size of 988 queries. The percentage of best hits was 20.6%. Detailed log [here](http://pastebin.com/9XXu2Gmg).
