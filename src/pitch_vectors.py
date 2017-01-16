@@ -148,7 +148,7 @@ def normalize(pitch_vector):
     for i, pitch in enumerate(pitch_vector[:-2]):
         diff = pitch_vector[i + 1] - pitch
         if diff > T2:
-            pitch_vector[i + 1] = pitch + diff
+            pitch_vector[i + 1] = pitch + np.sign(diff) * T2
 
     # Every unvoiced frame is set to the pitch of the previous voiced frame
     last_voiced = mean  # In case we start with an unvoiced frame (should be rare as we trimmed)
