@@ -12,7 +12,6 @@ def main(args):
     options = _parse_args(args[1:])
     logging.debug("Got options: %s.", str(options))
     # logging file
-    logFile = open('thxou.log', 'a+')
     fileLogger = logging.getLogger('thxou')
     logHandler = logging.FileHandler('thxou.log')
     logFormatter = logging.Formatter('%(message)s')
@@ -45,7 +44,6 @@ def main(args):
             fileLogger.info("Match NOT found! (%d/%d)", hitCounter, totalCounter)
             logging.info("Match not found.")
     fileLogger.info("==== End of Experiment ====")
-    logFile.close()
     return 0
 
 
