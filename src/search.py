@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 import logging
 
 import numpy as np
@@ -30,15 +31,16 @@ def main(args):
         file_logger.info("Processing query: %s.", query)
         scores = options.method.search_func(pitch_vector, ground_truth)
         sorted_ground_truths = sorted(scores, key=scores.get)
-        # np.where returns an 1-element tuple
-        matches = np.where([query[-9:-4] in match for match in sorted_ground_truths[:10]])[0]
+
+        query_id = track_from_filename(query)
+        ground_truths_ids = [track_from_filename(match) for match in sorted_ground_truths[:10]]
         logging.debug(sorted_ground_truths[:10])
-        if len(matches) > 0:
-            total_counter += 1
+        total_counter += 1
+        if query_id in ground_truths_ids:
+            match = ground_truths_ids.index(query_id)
             hit_counter += 1
-            file_logger.info("Match found! (Ranked %d) (%d/%d)",matches[0], hit_counter, total_counter)
+            file_logger.info("Match found! (Ranked %d) (%d/%d)", match, hit_counter, total_counter)
         else:
-            total_counter += 1
             file_logger.info("Match NOT found! (%d/%d)", hit_counter, total_counter)
     file_logger.info("==== End of Experiment ====")
     return 0
@@ -130,6 +132,10 @@ def _parse_args(args):
     options.method = SEARCH_METHODS[method_idx]
 
     return options
+
+
+def track_from_filename(filaname):
+    return os.path.splitext(os.path.basename(filaname))[0]
 
 
 def dtw(q, t):
