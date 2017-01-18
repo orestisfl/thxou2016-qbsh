@@ -1,5 +1,33 @@
 Query by Singing/Humming
 ---
+Installation
+In order to keep clean your working environment it is advised to download `virtualenv` to create an isolated
+python environment.
+To install `virtualenv` globally using pip run
+```
+[sudo] pip install virtualenv
+```
+Now we can create an isolated python environment, we use Python3 so we need a Python3 virtual environment,
+in order to create it run
+```
+cd ~
+mkdir thxou-venv/
+cd thxou-venv/
+virtualenv -p python3 thxvenv
+```
+Now that we created the virtual environment we need to activate it
+```
+source ~/thxou-venv/thxvenv/bin/activate
+```
+Now go to the src/ folder of the project and install the dependencies of the project using pip
+```
+pip3 install -r requirements.txt
+```
+You are ready to run the scripts below. To deactivate the virtual environment type the command
+```
+deactivate
+``` 
+
 A Query by Singing/Humming approach (QbSH) approach using Dynamic Time Warping (DTW). Workflow tutorial:
 
 1. Download and extract the MIR-QBSH dataset and place it under `src/datasets/MIR-QBSH-corpus/`.
