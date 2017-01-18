@@ -1,6 +1,5 @@
-Query by Singing/Humming
----
 Installation
+---
 In order to keep clean your working environment it is advised to download `virtualenv` to create an isolated
 python environment.
 To install `virtualenv` globally using pip run
@@ -28,6 +27,8 @@ You are ready to run the scripts below. To deactivate the virtual environment ty
 deactivate
 ``` 
 
+Query by Singing/Humming
+---
 A Query by Singing/Humming approach (QbSH) approach using Dynamic Time Warping (DTW). Workflow tutorial:
 
 1. Download and extract the MIR-QBSH dataset and place it under `src/datasets/MIR-QBSH-corpus/`.
