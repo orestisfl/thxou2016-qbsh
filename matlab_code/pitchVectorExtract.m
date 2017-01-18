@@ -26,7 +26,7 @@ function result = pitchVectorExtract(sound_file_name)
 %     r = spCorr(y, fs, [], 'plot');
 
     % Normalize the pitch vectors
-     F0 = F0/mean(F0);
+%     F0 = F0/mean(F0);
 %     F0 = normr(F0);
     result = F0;
     size(F0)

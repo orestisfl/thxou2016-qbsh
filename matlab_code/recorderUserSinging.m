@@ -1,6 +1,4 @@
 function feature_vector = recorderUserSinging()
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
 
 % List of the song names
 song_names = [
@@ -25,7 +23,7 @@ audiowrite('mytry.wav',y,8000);
 pitch_vector_mine = pitchVectorExtract('mytry.wav');
 
 % Here goes the neural network function
-index_array = myNeuralNetworkFunction10classes(pitch_vector_mine')
+index_array = myNeuralNetworkFunction9classes(pitch_vector_mine')
 [maxprop,index] = max(index_array);
 song_names(index,:)
 maxprop

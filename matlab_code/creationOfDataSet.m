@@ -4,7 +4,7 @@ function [final,final_features,final_labels] = creationOfDataSet()
         '00029';'00030';'00034';'00039']
     final = data_fuser(folder_names);
     
-    %shuffle the final matrix
+    % Shuffle the final matrix
     final = final(randperm(size(final,1)),:);
     final_features = final(:,1:(end-1));
     final_labels = final(:,end);
