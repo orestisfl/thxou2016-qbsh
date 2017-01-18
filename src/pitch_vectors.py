@@ -36,13 +36,13 @@ def main():
         import pickle
         pickle_pvs = {}
     target_extension = action.target_extension
-    if options.normalize:
+    if options.preprocess:
         target_extension = '.npv'
     for filename in tqdm(options.files):
         base_name, fileext = os.path.splitext(filename)
         if action.extension_check(fileext):
             pv = action.get_pv(filename)
-            if options.normalize:
+            if options.preprocess:
                 pv = preprocess(pv)
             save_pitch_vector(pv, base_name + target_extension)
             if options.pickle:

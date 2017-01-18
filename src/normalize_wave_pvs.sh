@@ -5,4 +5,4 @@ set -e
 # Assuming that this script is run from /src folder.
 
 # Create normalized PVs pickle db from wave files
-find datasets/MIR-QBSH-corpus/waveFile -iname "*.pv" -print0 | xargs -0 ./pitch_vectors.py normalize --pickle --pickle-database "./wave-normalized.pickle"
+find datasets/MIR-QBSH-corpus/waveFile -iname "*.pv" -print0 | xargs -0 ./pitch_vectors.py preprocess --pickle --pickle-database "./wave-normalized.pickle"

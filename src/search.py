@@ -60,7 +60,7 @@ def _init_queries(options):
         queries = {}
         for database in options.query:
             queries.update(_pickle_load(database))
-    if options.normalize:
+    if options.preprocess:
         for idx, pv in queries.items():
             queries[idx] = pitch_vectors.preprocess(pv)
     return queries
