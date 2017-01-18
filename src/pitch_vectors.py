@@ -42,7 +42,7 @@ def main():
         if action.extension_check(fileext):
             pv = action.get_pv(filename)
             if options.normalize:
-                pv = normalize(pv)
+                pv = preprocess(pv)
             save_pitch_vector(pv, base_name + target_extension)
             if options.pickle:
                 pickle_pvs[filename] = pv
@@ -65,10 +65,10 @@ def parse_args(args):
 
     import argparse
     parser = argparse.ArgumentParser(prog=sys.argv[0] + ' ' + action.name)
-    is_normalize = (action.name == 'normalize')
+    is_normalize = (action.name == 'preprocess')
     parser.add_argument('files', type=str, nargs='+', help="List of files to be processed.")
     parser.add_argument(
-        '--normalize', '-n',
+        '--preprocess', '-n',
         default=is_normalize,
         action='store_true',
         help='Normalize extracted pitch vectors.')
@@ -133,7 +133,7 @@ def save_pitch_vector(pitch_vector, filename):
         print('\n'.join(str(p) for p in pitch_vector), file=file_object)
 
 
-def normalize(pitch_vector):
+def preprocess(pitch_vector):
     # Remove leading and trailing zeros
     pitch_vector = np.trim_zeros(pitch_vector)
 
@@ -180,7 +180,7 @@ if __name__ == '__main__':
     Action = namedtuple('Action', ['name', 'extension_check', 'get_pv', 'target_extension'])
     # TODO: action: create pickle from .pv files.
     ACTIONS = [
-        Action('normalize', (lambda ext: 'pv' in ext.lower()), load_pitch_vector, '.npv'),
+        Action('preprocess', (lambda ext: 'pv' in ext.lower()), load_pitch_vector, '.npv'),
         Action('wav-extract', (lambda ext: ext.lower() == '.wav'), pitch_vector_from_wav, '.pv'),
         Action('midi-extract', (lambda ext: ext.lower() in ['.midi', '.mid']), pitch_vector_from_midi, '.pv')
     ]

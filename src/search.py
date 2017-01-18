@@ -61,7 +61,7 @@ def _init_queries(options):
             queries.update(_pickle_load(database))
     if options.normalize:
         for idx, pv in queries.items():
-            queries[idx] = pitch_vectors.normalize(pv)
+            queries[idx] = pitch_vectors.preprocess(pv)
     return queries
 
 
@@ -98,7 +98,7 @@ def _parse_args(args):
         help="Query is from a pickle database. Positional arguments are used as indices."
     )
     parser.add_argument(
-        "--normalize",
+        "--preprocess",
         action="store_true",
         default=False,
         help="Normalize query pitch vector."
