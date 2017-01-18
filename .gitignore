@@ -275,3 +275,4 @@ datasets/
 #added by lefos
 matlab_code/*.wav
 database/
+.idea/
