@@ -13,7 +13,7 @@ pv_2 = np.array([float(line.strip()) for line in open(file_2, 'r')])
 # d_beg = sum(pv_1[1:3])/3 - sum(pv_2[1:3])/3
 # pv_1 = pv_1 - d_beg
 d_mean = np.mean(pv_1) - np.mean(pv_2)
-pv_1 = pv_1 - d_mean
+pv_1 -= d_mean
 
 idx = range(min(len(pv_1), len(pv_2)))
 

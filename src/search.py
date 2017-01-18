@@ -36,12 +36,12 @@ def main(args):
         logging.debug(sorted_ground_truths[:10])
         if len(matches) > 0:
             logging.info("Match found! (Ranked %d)", matches[0])
-            totalCounter +=1 
-            hitCounter +=1
-            fileLogger.info("Match found! (%d/%d)",hitCounter,totalCounter)
+            totalCounter += 1
+            hitCounter += 1
+            fileLogger.info("Match found! (%d/%d)", hitCounter, totalCounter)
         else:
-            totalCounter +=1
-            fileLogger.info("Match NOT found! (%d/%d)",hitCounter,totalCounter)
+            totalCounter += 1
+            fileLogger.info("Match NOT found! (%d/%d)", hitCounter, totalCounter)
             logging.info("Match not found.")
     fileLogger.info("==== End of Experiment ====")
     logFile.close()
@@ -141,7 +141,7 @@ def dtw(q, t):
     # d_beg = sum(q[1:2])/2 - sum(t[1:2])/2
     # q = q - d_beg
     d_mean = np.mean(q) - np.mean(t)
-    q = q - d_mean
+    q -= d_mean
     distance, path = fastdtw(q, t, radius=2, dist=euclidean)
     return distance
 
