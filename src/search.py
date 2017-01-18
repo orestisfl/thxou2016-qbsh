@@ -10,11 +10,23 @@ import pitch_vectors
 def main(args):
     options = _parse_args(args[1:])
     logging.debug("Got options: %s.", str(options))
+    # logging file
+    logFile = open('thxou.log', 'a+')
+    fileLogger = logging.getLogger('thxou')
+    logHandler = logging.FileHandler('thxou.log')
+    logFormatter = logging.Formatter('%(message)s')
+    logHandler.setFormatter(logFormatter)
+    fileLogger.addHandler(logHandler)
+    fileLogger.setLevel(logging.INFO)
+    fileLogger.info("==== Begin Experiment ====")
+    # endof logging file
     ground_truth = _pickle_load(options.database)
     queries = _init_queries(options)
     assert queries is not None, "queries couldn't be initialized."
     logging.debug("Got a ground truth of size %d and %d queries.", len(ground_truth), len(queries))
-
+    # hit counters
+    totalCounter = 0
+    hitCounter = 0
     for query, pitch_vector in queries.items():
         logging.info("Processing query: %s.", query)
         scores = options.method.search_func(pitch_vector, ground_truth)
@@ -24,8 +36,15 @@ def main(args):
         logging.debug(sorted_ground_truths[:10])
         if len(matches) > 0:
             logging.info("Match found! (Ranked %d)", matches[0])
+            totalCounter +=1 
+            hitCounter +=1
+            fileLogger.info("Match found! (%d/%d)",hitCounter,totalCounter)
         else:
+            totalCounter +=1
+            fileLogger.info("Match NOT found! (%d/%d)",hitCounter,totalCounter)
             logging.info("Match not found.")
+    fileLogger.info("==== End of Experiment ====")
+    logFile.close()
     return 0
 
 
