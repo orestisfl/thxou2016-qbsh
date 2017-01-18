@@ -6,7 +6,7 @@ To install `virtualenv` globally using pip run
 ```
 [sudo] pip install virtualenv
 ```
-Now we can create an isolated python environment, we use Python3 so we need a Python3 virtual environment,
+Now we can create an isolated python environment. We use Python3 so we need a Python3 virtual environment,
 in order to create it run
 ```
 cd ~
@@ -22,7 +22,7 @@ Now go to the src/ folder of the project and install the dependencies of the pro
 ```
 pip3 install -r requirements.txt
 ```
-You are ready to run the scripts below. To deactivate the virtual environment type the command
+You are ready to run the scripts below. To deactivate the virtual environment(when you finish working with the scripts) type the command
 ```
 deactivate
 ``` 
