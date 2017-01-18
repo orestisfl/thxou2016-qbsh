@@ -11,39 +11,36 @@ import pitch_vectors
 def main(args):
     options = _parse_args(args[1:])
     logging.debug("Got options: %s.", str(options))
-    # logging file
-    fileLogger = logging.getLogger('thxou')
-    logHandler = logging.FileHandler('thxou.log')
-    logFormatter = logging.Formatter('%(message)s')
-    logHandler.setFormatter(logFormatter)
-    fileLogger.addHandler(logHandler)
-    fileLogger.setLevel(logging.INFO)
-    fileLogger.info("==== Begin Experiment ====")
-    # endof logging file
+    # Logger
+    file_logger = logging.getLogger('THXOU_LOGGER')
+    log_handler = logging.FileHandler('thxou.log')
+    log_formatter = logging.Formatter('%(message)s')
+    log_handler.setFormatter(log_formatter)
+    file_logger.addHandler(log_handler)
+    file_logger.setLevel(logging.INFO)
+    file_logger.info("==== Begin Experiment ====")
     ground_truth = _pickle_load(options.database)
     queries = _init_queries(options)
     assert queries is not None, "queries couldn't be initialized."
-    logging.debug("Got a ground truth of size %d and %d queries.", len(ground_truth), len(queries))
+    file_logger.debug("Got a ground truth of size %d and %d queries.", len(ground_truth), len(queries))
     # hit counters
-    totalCounter = 0
-    hitCounter = 0
+    total_counter = 0
+    hit_counter = 0
     for query, pitch_vector in queries.items():
-        logging.info("Processing query: %s.", query)
+        file_logger.info("Processing query: %s.", query)
         scores = options.method.search_func(pitch_vector, ground_truth)
         sorted_ground_truths = sorted(scores, key=scores.get)
         # np.where returns an 1-element tuple
         matches = np.where([query[-9:-4] in match for match in sorted_ground_truths[:10]])[0]
         logging.debug(sorted_ground_truths[:10])
         if len(matches) > 0:
-            logging.info("Match found! (Ranked %d)", matches[0])
-            totalCounter += 1
-            hitCounter += 1
-            fileLogger.info("Match found! (%d/%d)", hitCounter, totalCounter)
+            total_counter += 1
+            hit_counter += 1
+            file_logger.info("Match found! (Ranked %d) (%d/%d)",matches[0], hit_counter, total_counter)
         else:
-            totalCounter += 1
-            fileLogger.info("Match NOT found! (%d/%d)", hitCounter, totalCounter)
-            logging.info("Match not found.")
-    fileLogger.info("==== End of Experiment ====")
+            total_counter += 1
+            file_logger.info("Match NOT found! (%d/%d)", hit_counter, total_counter)
+    file_logger.info("==== End of Experiment ====")
     return 0
 
 
