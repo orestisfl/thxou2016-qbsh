@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 import math
 from collections import namedtuple
+
+import music21
 import numpy as np
 from aubio import source, pitch
-import music21
 
 fs = 8000  # Default MIREX WAV sampling rate
 framesize = 0.032  # In seconds

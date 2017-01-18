@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
 import sys
+
+import matplotlib.pyplot as plt
 import numpy as np
 from fastdtw import fastdtw
-import matplotlib.pyplot as plt
 from scipy.spatial.distance import euclidean
 
 file_1 = sys.argv[1]

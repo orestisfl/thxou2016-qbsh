@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 
-import numpy as np
-from scipy.spatial.distance import euclidean
-
 from fastdtw import fastdtw
+from scipy.spatial.distance import euclidean
 
 pitch_vector_1 = []
 pitch_vector_2 = []
