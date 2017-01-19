@@ -33,7 +33,7 @@ def main():
         action, options = options
 
     with open(options.filelist) as f:
-        filelist = f.read().split('\n')
+        filelist = f.read().splitlines()
 
     if options.pickle:
         import pickle
