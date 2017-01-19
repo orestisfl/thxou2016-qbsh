@@ -50,7 +50,7 @@ def main():
         else:
             print("{} {} doesn't support extension '{}'.".format(sys.argv[0], action.name, fileext), file=sys.stderr)
     if options.pickle:
-        with open(options.pickle_database, 'ab') as file_object:
+        with open(options.pickle_database, 'wb') as file_object:
             pickle.dump(pickle_pvs, file_object)
     return 0
 

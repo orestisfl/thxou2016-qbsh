@@ -18,4 +18,7 @@ find . \( -iname "*.pv" -o -iname "*.mpv" -o -iname "*.npv" \) -print0 | xargs -
 find . \( -iname "*.mid" -o -iname "*.midi" \) -print0 | xargs -0 ./pitch_vectors.py midi-extract --pickle --pickle-database "./midi.pickle"
 
 # Create the '.pickle' file without normalization for *.wav files.
-find . -iname "*.wav" -print0 | xargs -0 ./pitch_vectors.py wav-extract --pickle --pickle-database "./wave.pickle"
+find . -iname "*.wav" > wave-list.txt
+set +x  # Turn of traces because the next command is huge.
+./pitch_vectors.py wav-extract --pickle --pickle-database "./wave.pickle" $(cat wave-list.txt)
+rm wave-list.txt
