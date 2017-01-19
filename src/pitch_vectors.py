@@ -77,12 +77,6 @@ def parse_args(args):
         action='store_true',
         help='Normalize extracted pitch vectors.')
     parser.add_argument(
-        '--recursive', '-r',
-        default=False,
-        action='store_true',
-        help='Recursively visit files in directories.#TODO'
-    )
-    parser.add_argument(
         '--pickle', '-p',
         default=False,
         action='store_true',
@@ -98,8 +92,6 @@ def parse_args(args):
 
     # Validate
     options = parser.parse_args(args)
-    if options.recursive:
-        raise NotImplementedError("--recursive")
     if options.pickle and not options.pickle_database:
         options.pickle_database = 'database-{}.pickle'.format(action.name)
     elif options.pickle_database and not options.pickle:
