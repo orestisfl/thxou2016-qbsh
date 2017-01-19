@@ -32,13 +32,16 @@ def main():
     else:
         action, options = options
 
+    with open(options.filelist) as f:
+        filelist = f.read().split('\n')
+
     if options.pickle:
         import pickle
         pickle_pvs = {}
     target_extension = action.target_extension
     if options.preprocess:
         target_extension = '.npv'
-    for filename in tqdm(options.files):
+    for filename in tqdm(filelist):
         base_name, fileext = os.path.splitext(filename)
         if action.extension_check(fileext):
             pv = action.get_pv(filename)
@@ -67,7 +70,7 @@ def parse_args(args):
     import argparse
     parser = argparse.ArgumentParser(prog=sys.argv[0] + ' ' + action.name)
     is_normalize = (action.name == 'preprocess')
-    parser.add_argument('files', type=str, nargs='+', help="List of files to be processed.")
+    parser.add_argument('filelist', type=str, help="Text file holding the list of files to be processed.")
     parser.add_argument(
         '--preprocess', '-n',
         default=is_normalize,
