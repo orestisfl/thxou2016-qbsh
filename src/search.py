@@ -39,9 +39,11 @@ def main(args):
         if query_id in ground_truths_ids:
             match = ground_truths_ids.index(query_id)
             hit_counter += 1
-            file_logger.info("Match found! (Ranked %d) (%d/%d)", match, hit_counter, total_counter)
+            percent = (hit_counter / total_counter) * 100
+            file_logger.info("Match found! (Ranked %d) (%d/%d) (%.2f%%)", match, hit_counter, total_counter, percent)
         else:
-            file_logger.info("Match NOT found! (%d/%d)", hit_counter, total_counter)
+            percent = (hit_counter / total_counter) * 100
+            file_logger.info("Match NOT found! (%d/%d) (%.2f%%)", hit_counter, total_counter, percent)
     file_logger.info("==== End of Experiment ====")
     return 0
 
