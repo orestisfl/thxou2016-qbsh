@@ -140,11 +140,11 @@ def preprocess(pitch_vector):
     pitch_vector[pitch_vector <= mean - T1] = 0
 
     # The jumps between 2 consecutive frames cannot be more than +/- T2 semitones, here T2 = 15
-    T2 = 15
-    for i, pitch in enumerate(pitch_vector[:-2]):
-        diff = pitch_vector[i + 1] - pitch
-        if diff > T2:
-            pitch_vector[i + 1] = pitch + np.sign(diff) * T2
+    #T2 = 15
+    #for i, pitch in enumerate(pitch_vector[:-2]):
+    #    diff = pitch_vector[i + 1] - pitch
+    #    if diff > T2:
+    #        pitch_vector[i + 1] = pitch + np.sign(diff) * T2
 
     # Every unvoiced frame is set to the pitch of the previous voiced frame
     last_voiced = mean  # In case we start with an unvoiced frame (should be rare as we trimmed)
@@ -155,11 +155,11 @@ def preprocess(pitch_vector):
             last_voiced = pitch
 
     # Moving Average smoothing of order MA, here MA = 9
-    MA = 9
-    pitch_vector = np.convolve(pitch_vector, np.ones((MA,)) / MA, mode='valid')
+    #MA = 9
+    #pitch_vector = np.convolve(pitch_vector, np.ones((MA,)) / MA, mode='valid')
 
     # Remove mean
-    # pitch_vector = pitch_vector - mean
+    #pitch_vector = pitch_vector - mean
     return pitch_vector
 
 
