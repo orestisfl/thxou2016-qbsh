@@ -13,12 +13,17 @@
 
 \begin{document}
     \addtocontents{toc}{\protect\thispagestyle{empty}}
+    \addtocontents{lof}{\protect\thispagestyle{empty}}
+
 	\maketitle
+
+	\thispagestyle{empty}
+	\input{abstract}
+	\clearpage
+
 	\tableofcontents
 	\listoffigures
-	%\lstlistoflistings
-%	\listoffigures
-	%\listoftables
+
 	\clearpage
 	\setcounter{page}{1}
 
