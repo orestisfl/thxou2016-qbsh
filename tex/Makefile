@@ -7,6 +7,9 @@ all: $(MAINDOC).pdf
 
 $(MAINDOC).pdf: $(MAINDOC).tex
 	latexmk $(LTXARGS) $(MAINDOC).tex
+	latexmk $(LTXARGS) $(MAINDOC).tex
+	latexmk $(LTXARGS) $(MAINDOC).tex
+
 
 embed: $(MAINDOC).pdf
 	gs -q -dNOPAUSE -dBATCH -dPDFSETTINGS=/prepress -sDEVICE=pdfwrite -sOutputFile=$(MAINDOC)-embed.pdf $(MAINDOC).pdf
