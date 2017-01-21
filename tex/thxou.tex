@@ -14,12 +14,10 @@
 \date{\vspace{10cm}\today}
 
 \begin{document}
-    \addtocontents{toc}{\protect\thispagestyle{empty}}
-    \addtocontents{lof}{\protect\thispagestyle{empty}}
+	\pagestyle{empty}
 
 	\maketitle
 
-	\thispagestyle{empty}
 	\input{abstract}
 	\clearpage
 
@@ -27,6 +25,7 @@
 	\listoffigures
 
 	\clearpage
+	\pagestyle{scrheadings}
 	\setcounter{page}{1}
 
 	\input{introduction}
