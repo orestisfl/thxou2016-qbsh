@@ -2,6 +2,7 @@
 import math
 from collections import namedtuple
 
+import scipy.signal
 import music21
 import numpy as np
 from aubio import source, pitch
@@ -130,15 +131,18 @@ def save_pitch_vector(pitch_vector, filename):
 
 
 def preprocess(pitch_vector):
+    # P.1)
     # Remove leading and trailing zeros
     pitch_vector = np.trim_zeros(pitch_vector)
 
+    # P.2)
     # Mark everything outside +/- T1 semitones from the mean as unvoiced (0), here T1 = 20
     T1 = 20
     mean = np.mean(pitch_vector)
     pitch_vector[pitch_vector >= mean + T1] = 0
     pitch_vector[pitch_vector <= mean - T1] = 0
 
+    # P.3)
     # The jumps between 2 consecutive frames cannot be more than +/- T2 semitones, here T2 = 15
     #T2 = 15
     #for i, pitch in enumerate(pitch_vector[:-2]):
@@ -146,6 +150,7 @@ def preprocess(pitch_vector):
     #    if diff > T2:
     #        pitch_vector[i + 1] = pitch + np.sign(diff) * T2
 
+    # P.4)
     # Every unvoiced frame is set to the pitch of the previous voiced frame
     last_voiced = mean  # In case we start with an unvoiced frame (should be rare as we trimmed)
     for i, pitch in enumerate(pitch_vector):
@@ -154,12 +159,15 @@ def preprocess(pitch_vector):
         else:
             last_voiced = pitch
 
+    # P.5)
     # Moving Average smoothing of order MA, here MA = 9
     #MA = 9
     #pitch_vector = np.convolve(pitch_vector, np.ones((MA,)) / MA, mode='valid')
 
-    # Remove mean
-    #pitch_vector = pitch_vector - mean
+    # P.6)
+    # Median Filter of 9th order for smoothing of the time series
+    #pitch_vector = scipy.signal.medfilt(pitch_vector, 9)
+
     return pitch_vector
 
 
