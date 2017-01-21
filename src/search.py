@@ -144,6 +144,7 @@ def dtw(q, t):
     q, t = make_same_length(q, t)
     # d_beg = sum(q[1:2])/2 - sum(t[1:2])/2
     # q = q - d_beg
+    # P.7 
     d_mean = np.mean(q) - np.mean(t)
     q -= d_mean
     distance, path = fastdtw(q, t, radius=2, dist=euclidean)
