@@ -272,7 +272,6 @@ sympy-plots-for-*.tex/
 
 datasets/
 
-#added by lefos
-matlab_code/*.wav
 database/
 .idea/
+*.wav
