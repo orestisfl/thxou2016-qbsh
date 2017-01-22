@@ -21,6 +21,5 @@ rm midi-list.txt
 
 # Create the '.pickle' file without normalization for *.wav files.
 find . -iname "*.wav" > wave-list.txt
-set +x  # Turn of traces because the next command is huge.
 ./pitch_vectors.py wav-extract --pickle --pickle-database "./wave.pickle" wave-list.txt
 rm wave-list.txt
