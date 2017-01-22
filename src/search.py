@@ -144,7 +144,7 @@ def dtw(q, t):
     q, t = make_same_length(q, t)
     # d_beg = sum(q[1:2])/2 - sum(t[1:2])/2
     # q = q - d_beg
-    # P.7 
+    # P.7
     d_mean = np.mean(q) - np.mean(t)
     q -= d_mean
     distance, path = fastdtw(q, t, radius=2, dist=euclidean)
@@ -152,14 +152,8 @@ def dtw(q, t):
 
 
 def make_same_length(x, y):
-    lenx = len(x)
-    leny = len(y)
-    if lenx > leny:
-        return x[:leny], y
-    elif leny > lenx:
-        return x, y[:lenx]
-    else:
-        return x, y
+    new_length = min(len(x), len(y))
+    return x[:new_length], y[:new_length]
 
 
 def iterative_search(compare_func, **kwargs):
