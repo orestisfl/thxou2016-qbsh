@@ -11,31 +11,28 @@
 	\and Ορέστης Φλώρος-Μαλιβίτσης - 7796\\ \texttt{\href{mailto:orestisf@ece.auth.gr}{orestisf@ece.auth.gr}}
 	\and Ιωάννης Δημανίδης - 8358\\ \texttt{\href{mailto:ioandima@ece.auth.gr}{ioandima@ece.auth.gr}}
 }
-\date{\vspace{10cm}\today}
+\date{\vspace{5cm}\today}
 
 \begin{document}
-	\pagestyle{empty}
+\pagestyle{empty}
+\maketitle
+\tableofcontents
+\listoffigures
+\clearpage
+\pagestyle{scrheadings}
+\setcounter{page}{1}
 
-	\maketitle
+\input{introduction}
+\input{definition}
+\input{purpose}
+\input{dataset}
+\input{related_work}
+% \input{tools}
+\input{implementation}
+\input{experiments}
+\input{conclusions}
 
-	\tableofcontents
-	\listoffigures
+\clearpage
 
-	\clearpage
-	\pagestyle{scrheadings}
-	\setcounter{page}{1}
-
-	\input{introduction}
-    \input{definition}
-	\input{purpose}
-    \input{dataset}
-    \input{related_work}
-	% \input{tools}
-	\input{implementation}
-	\input{experiments}
-	\input{conclusions}
-
-	\clearpage
-
-    \bibliography{thxou}
+\bibliography{thxou}
 \end{document}

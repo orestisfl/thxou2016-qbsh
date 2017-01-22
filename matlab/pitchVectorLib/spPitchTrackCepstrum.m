@@ -1,23 +1,23 @@
 % NAME
-%   spPitchTrackCepstrum: Pitch Tracking via the Cepstral Method 
+%   spPitchTrackCepstrum: Pitch Tracking via the Cepstral Method
 % SYNOPSIS
-%   [F0, T, C] = 
+%   [F0, T, C] =
 %     spPitchTrackCepstrum(x, fs, frame_length, frame_overlap, window, show)
 % DESCRIPTION
 %   Track F0 formants in time bins
 % INPUTS
 %   x               (vector) of size Nx1.
-%   fs              (scalar) the sampling rate in Hz. 
-%   [frame_length]  (scalar) the length of each frame in micro second. 
-%                    The default is 30ms.  
-%   [frame_overlap] (scalar) the length of each frame overlaps in micro second. 
-%                    The default is frame_length / 2. 
-%   [window]        (string) the window function such as rectwin, hamming.  
+%   fs              (scalar) the sampling rate in Hz.
+%   [frame_length]  (scalar) the length of each frame in micro second.
+%                    The default is 30ms.
+%   [frame_overlap] (scalar) the length of each frame overlaps in micro second.
+%                    The default is frame_length / 2.
+%   [window]        (string) the window function such as rectwin, hamming.
 %                    if not specified, equivalent to hamming
 %   [show]          (bool)   plot or not. The default is 0.
 % OUTPUTS
-%   F0              (vector) of size 1xK which contains the fundamental 
-%                    frequencies at each frame where K is the number of frames. 
+%   F0              (vector) of size 1xK which contains the fundamental
+%                    frequencies at each frame where K is the number of frames.
 %   T               (vector) of size 1xK whose value corresponds to the
 %                    time center of each frame in second
 %   [C]             (matrix) of size MxK which contains cepstrogram
@@ -55,7 +55,7 @@ function [F0, T, C] = spPitchTrackCepstrum(x, fs, frame_length, frame_overlap, w
  end
  T = (round(nsample/2):(nsample-noverlap):N-1-round(nsample/2))/fs;
 
-if show 
+if show
     % plot waveform
     subplot(2,1,1);
     t = (0:N-1)/fs;

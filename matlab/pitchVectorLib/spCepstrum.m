@@ -7,8 +7,8 @@
 % INPUTS
 %   x        (vector) of size Nx1 which contains signal
 %   fs       (scalar) the sampling frequency
-%   [window] (string) the window function such as 'rectwin', 'hamming'. 
-%             The default is 'rectwin' (or no window). 
+%   [window] (string) the window function such as 'rectwin', 'hamming'.
+%             The default is 'rectwin' (or no window).
 %   [show]   (bool)   plot or not. The default is 0.
 % OUTPUTS
 %   c        (vector) of size Nx1 which contains cepstrum coefficients

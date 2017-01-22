@@ -3,7 +3,7 @@ function [final,final_features,final_labels] = creationOfDataSet()
         '00014';'00017';'00020';'00022';'00024'; ...
         '00029';'00030';'00034';'00039']
     final = data_fuser(folder_names);
-    
+
     % Shuffle the final matrix
     final = final(randperm(size(final,1)),:);
     final_features = final(:,1:(end-1));
@@ -18,7 +18,7 @@ function final_matrix = data_fuser(folder_names)
         matrix = creationOfData(folder_names(i,:),i);
         final_matrix = [final_matrix;matrix];
     end
-    
+
 function final_matrix = creationOfData(audio_id,class_id)
     folder_name = strcat('../database/',audio_id,'/*.wav')
     files = dir(folder_name);

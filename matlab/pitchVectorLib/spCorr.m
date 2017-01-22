@@ -7,12 +7,12 @@
 % INPUTS
 %   x        (vector) of size Nx1 which contains signal
 %   fs       (scalar) the sampling frequency
-%   [maxlag] (scalar) seek the correlation sequence over the lag range 
+%   [maxlag] (scalar) seek the correlation sequence over the lag range
 %             [-maxlag:maxlag]. Output r has length 2*maxlag+1.
 %             The default is 20ms lag, that is, 50Hz (the minimum possible
 %             F0 frequency of human speech)
 % OUTPUTS
-%   r        (vector) of size 2*maxlag+1 which contains 
+%   r        (vector) of size 2*maxlag+1 which contains
 %             correlation coefficients
 % AUTHOR
 %   Naotoshi Seo, April 2008

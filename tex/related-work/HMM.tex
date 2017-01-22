@@ -2,20 +2,20 @@
 \subsection{\hmm{}}
 \subsubsection{Εισαγωγή}
 \begin{figure}[htb]
-    \centering
-    \begin{subfigure}{0.48\linewidth}
-            \centering
-            \includegraphics[width=\linewidth]{fosler1998markov-1}
-            \caption{Παράδειγμα μαρκοβιανής αλυσίδας με υποθετικά νούμερα \protect\cite{fosler1998markov}}
-            \label{fig:fosler1998markov-1}
-    \end{subfigure}\hfill
-    \begin{subfigure}{0.48\linewidth}
-            \centering
-            \includegraphics[width=\linewidth]{HMMGraph}
-            \caption{Παράδειγμα κρυφής μαρκοβιανής αλυσίδας με υποθετικά νούμερα \protect\cite{wikiHMM}}
-            \label{fig:HMMGraph}
-    \end{subfigure}
-    \caption{Παραδείγματα Μαρκοβιανών Μοντέλων}
+	\centering
+	\begin{subfigure}{0.48\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{fosler1998markov-1}
+		\caption{Παράδειγμα μαρκοβιανής αλυσίδας με υποθετικά νούμερα \protect\cite{fosler1998markov}}
+		\label{fig:fosler1998markov-1}
+	\end{subfigure}\hfill
+	\begin{subfigure}{0.48\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{HMMGraph}
+		\caption{Παράδειγμα κρυφής μαρκοβιανής αλυσίδας με υποθετικά νούμερα \protect\cite{wikiHMM}}
+		\label{fig:HMMGraph}
+	\end{subfigure}
+	\caption{Παραδείγματα Μαρκοβιανών Μοντέλων}
 \end{figure}
 Ένα Hidden Markov Model είναι μια διπλά στοχαστική διαδικασία:
 υπάρχει μια κρυφή διαδικασία η οποία μπορεί να παρατηρηθεί μέσω άλλων στοχαστικών διαδικασιών που παράγουν την ακολουθία των παρατηρηθέντων συμβόλων \cite{rabiner1986introduction}.
@@ -35,15 +35,15 @@
 
 \subsubsection{Εφαρμογή σε συστήματα QbSH}
 \begin{figure}[htb]
-    \centering
-    \begin{subfigure}{0.45\linewidth}
-        \includegraphics[height=3cm, width=\linewidth, keepaspectratio]{pardo2004name-alouette}
-    \end{subfigure}\hfill
-    \begin{subfigure}{0.45\linewidth}
-        \includegraphics[height=3cm, width=\linewidth, keepaspectratio]{pardo2004name-scalar}
-    \end{subfigure}
-    \caption{Markov models από κομμάτια μουσικής \protect\cite{pardo2004name}}
-    \label{fig:pardo2004name-alouette}
+	\centering
+	\begin{subfigure}{0.45\linewidth}
+		\includegraphics[height=3cm, width=\linewidth, keepaspectratio]{pardo2004name-alouette}
+	\end{subfigure}\hfill
+	\begin{subfigure}{0.45\linewidth}
+		\includegraphics[height=3cm, width=\linewidth, keepaspectratio]{pardo2004name-scalar}
+	\end{subfigure}
+	\caption{Markov models από κομμάτια μουσικής \protect\cite{pardo2004name}}
+	\label{fig:pardo2004name-alouette}
 \end{figure}
 
 Στην βιβλιογραφία υπάρχουν διάφορες αναφορές για χρήση \hmm{} σε συστήματα QbSH.
@@ -54,7 +54,7 @@
 Παράδειγμα δημιουργίας CHMM φαίνεται στο \imageref{jang2005continuous-chmm}.
 Κάθε state στο CHMM χαρακτηρίζεται από την Gaussian probability density function (PDF):
 \begin{equation*}
-    g(\chi, \mu, \Sigma) = \frac{1}{\sqrt{(2\pi)^d\abs{\Sigma}}} \exp{[\frac{-(\chi-\mu)^T\Sigma^{-1}(\chi-\mu)}{2}]}
+	g(\chi, \mu, \Sigma) = \frac{1}{\sqrt{(2\pi)^d\abs{\Sigma}}} \exp{[\frac{-(\chi-\mu)^T\Sigma^{-1}(\chi-\mu)}{2}]}
 \end{equation*}
 όπου $x$ είναι το $d$-διάστατο διάνυσμα παρατηρήσεων, $\mu$ και $\Sigma$ είναι τα mean vector και covariance matrix της PDF.
 Για την βελτιστοποίηση των παραμέτρων των CHMM γίνεται training πάνω στο database με τα ground truth MIDI αρχεία και στις ηχογραφήσεις.
@@ -64,10 +64,10 @@
 Η μέγιστη γενική πιθανότητα βρίσκεται ως $\max_{j=1...n}{H(m,j)}$.
 
 \begin{figure}
-    \centering
-    \includegraphics[width=0.65\textwidth]{jang2005continuous-chmm}
-    \caption{Δημιουργία CHMM από το τραγούδι "Ten Little Indians" \protect\cite{jang2005continuous}}
-    \label{fig:jang2005continuous-chmm}
+	\centering
+	\includegraphics[width=0.65\textwidth]{jang2005continuous-chmm}
+	\caption{Δημιουργία CHMM από το τραγούδι "Ten Little Indians" \protect\cite{jang2005continuous}}
+	\label{fig:jang2005continuous-chmm}
 \end{figure}
 
 Τέλος, όπως φαίνεται στο \imageref{4432653-fig-2} το \cite{slaney2008locality} χρησιμοποιεί \hmm{} στη φάση του segmentation.

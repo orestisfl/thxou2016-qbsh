@@ -3,19 +3,19 @@ function result = pitchVectorExtract(sound_file_name)
     [y,fs] = audioread(sound_file_name);
 %     sound(y,fs); % listen to that song
 %     y = y/mean(y);
-    
+
     info = audioinfo(sound_file_name);
     t = 0:seconds(1/fs):seconds(info.Duration);
     t = t(1:end-1);
-    
+
     %1
 %     c = spCepstrum(y, fs, 'hamming', 'plot');
 %     pause
-    
+
 %     %2
 %     c = spCepstrum(y, fs, 'hamming', 'plot');
 %     f0 = spPitchCepstrum(c, fs)
-%     
+%
     %3
 %     figure;
     cd pitchVectorLib

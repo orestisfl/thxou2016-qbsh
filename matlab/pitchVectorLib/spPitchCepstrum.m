@@ -5,7 +5,7 @@
 % DESCRIPTION
 %   Estimate pitch frequencies via Cepstral method
 % INPUTS
-%   c        (vector) of size Nx1 which contains cepstrum coefficients. 
+%   c        (vector) of size Nx1 which contains cepstrum coefficients.
 %             Use spCepstrum.m
 %   fs       (scalar) the sampling frequency of the original signal
 % OUTPUTS
